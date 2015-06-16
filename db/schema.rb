@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616082326) do
+ActiveRecord::Schema.define(version: 20150616091528) do
+
+  create_table "members", force: :cascade do |t|
+    t.integer  "grade",      null: false
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "relations", force: :cascade do |t|
+    t.integer  "master_id",     null: false
+    t.integer  "apprentice_id", null: false
+    t.boolean  "is_primary",    null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "relations", ["master_id", "apprentice_id"], name: "index_relations_on_master_id_and_apprentice_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
