@@ -1,3 +1,12 @@
 // Place all the styles related to the family_tree controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.family_tree_table{
+  th{
+    min-width: 120px;
+  }
+  .btn-grade{
+    min-width: 100px;
+  }
+}

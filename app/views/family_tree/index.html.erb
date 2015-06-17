@@ -1,0 +1,13 @@
+<table class="family_tree_table">
+<tr class="grade_row">
+  <% for i in @minimum_grade..@maximum_grade %>
+    <th><button class="btn btn-primary btn-grade"><%= i %></button></th>
+  <% end %>
+</tr>
+<tr id="member_row">
+</tr>
+</table>
+
+<% @all_members.each do |member| %>
+  <%= member.grade.to_s + member.name %>
+<% end %>
