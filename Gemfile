@@ -49,3 +49,11 @@ gem 'simple_form'
 gem 'devise'
 gem 'auto_html'
 
+# Some API settings key should be hide in another file and never be public
+gem 'settingslogic'
+
+# gem for login using facebook function
+gem "omniauth"
+gem "omniauth-facebook" 
+gem "auto-facebook", "0.42"
+
