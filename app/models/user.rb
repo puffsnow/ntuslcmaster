@@ -7,5 +7,5 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-  has_one :member, :class_name => 'Member', :foreign_key => 'id'
+  has_one :member, :class_name => 'Member', :foreign_key => 'user_id'
 end

@@ -4,5 +4,5 @@ class Member < ActiveRecord::Base
   has_many :apprentice_relations, :foreign_key => "master_id", :class_name => "Relation", :dependent => :destroy
   has_many :apprentices, :through => :apprentice_relations
 
-  belongs_to  :user,  :class_name => 'User',  :foreign_key => 'member_id'
+  belongs_to  :user,  :class_name => 'User'
 end

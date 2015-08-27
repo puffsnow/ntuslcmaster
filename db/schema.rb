@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20150626083210) do
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "relations", force: :cascade do |t|
@@ -43,7 +44,6 @@ ActiveRecord::Schema.define(version: 20150626083210) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
-    t.integer  "member_id"
     t.string   "fb_id",                  limit: 20
     t.string   "token"
     t.string   "name"
