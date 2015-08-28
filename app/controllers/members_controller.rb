@@ -3,6 +3,7 @@ class MembersController < ApplicationController
 
   def index
     @member = current_user.member
+
     @maximum_grade = Member.maximum('grade')
     @minimum_grade = Member.minimum('grade')
   end
@@ -11,7 +12,13 @@ class MembersController < ApplicationController
     
   end
 
+
+
   def create
+
+  end
+
+  def link
 
   end
 
@@ -20,6 +27,14 @@ class MembersController < ApplicationController
   end
 
   def destroy
+
+  end 
+
+  def create_and_link
+
+  end
+
+  def search
 
   end
 
