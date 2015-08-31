@@ -14,11 +14,9 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :members do
-    get 'search'
-    post 'link'
-    post 'create_and_link'
-  end
+  get   'members/search' => 'members#search'
+  post  'members/link'   => 'members#link'
+  resources :members
 
   # Example resource route with options:
   #   resources :products do

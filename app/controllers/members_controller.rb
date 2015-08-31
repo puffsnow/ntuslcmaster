@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :search
 
   def index
     @member = current_user.member
@@ -30,12 +30,10 @@ class MembersController < ApplicationController
 
   end 
 
-  def create_and_link
-
-  end
-
   def search
-
+    str = params[:str]
+    members = Member.search(str)
+    render :json => { members: members }
   end
 
 end

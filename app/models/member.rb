@@ -5,4 +5,15 @@ class Member < ActiveRecord::Base
   has_many :apprentices, :through => :apprentice_relations
 
   belongs_to  :user,  :class_name => 'User'
+
+  def self.search str
+    grade = str.to_i
+    if grade > 0
+      members = Member.find_by_grade(grade)
+    else
+      members = Member.select(:id, :name, :grade).where("name like ?", "%" + str + "%")
+    end
+    return members
+  end
+
 end
