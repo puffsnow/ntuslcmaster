@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150626083210) do
+ActiveRecord::Schema.define(version: 20150901091646) do
+
+  create_table "member_registers", force: :cascade do |t|
+    t.integer  "user_id",       null: false
+    t.integer  "member_id"
+    t.integer  "grade"
+    t.string   "name"
+    t.integer  "admin_user_id"
+    t.boolean  "accepted"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "members", force: :cascade do |t|
     t.integer  "grade",      null: false
