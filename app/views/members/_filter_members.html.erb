@@ -1,9 +1,11 @@
-<select class="select_grade">
-  <option> 請選擇級數 </option>
-  <% for i in @minimum_grade .. @maximum_grade %>
-  <option> <%= i %> </option>
-  <% end %>
-</select>
-<select class="select_member">
-  <option> 請選擇成員 </option>
-</select>
+<div class="filter_member_field">
+  <select class="select_grade">
+    <option value="0"> 請選擇級數 </option>
+    <% for i in @minimum_grade .. @maximum_grade %>
+    <option value="<%= i %>"> <%= i %> </option>
+    <% end %>
+  </select>
+  <select class="select_member">
+    <option> 請選擇成員 </option>
+  </select>
+</div>

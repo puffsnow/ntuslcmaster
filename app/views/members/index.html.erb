@@ -1,13 +1,6 @@
 <div>
-你的系級、姓名：<br />
-<% if @member == nil %>
-  請選擇一個已經存在的社員，若不存在，請自行建立一個：
-  <div class="choose_own_member">
-    <%= render "filter_members" %>
-  </div>
-<% else %>
+  你的系級、姓名：<br />
   <%= 'B' + @member.grade + ' ' + @member.name %>
-<% end %>
 </div>
 
 <div>

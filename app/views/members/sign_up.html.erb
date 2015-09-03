@@ -1,5 +1,14 @@
-<p>
+<div>
 請建立一個您的社員身份，如果已經存在，請直接選擇，否則請建立一個新的社員身份：
-</p>
-<p>
-</p>
+</div>
+<div>
+  尋找已經存在的社員：
+  <%= render "filter_members" %>
+  <button>登記為此社員</button>
+</div>
+<div>
+  建立一個新的社員：
+  <%= text_field_tag "grade" %>
+  <%= text_field_tag "name" %>
+  <button>建立並登記為此社員</button>
+</div>
