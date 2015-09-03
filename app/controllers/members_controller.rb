@@ -1,12 +1,10 @@
 class MembersController < ApplicationController
   before_action :authenticate_user!, except: :search
+  before_action :get_grades
 
   def index
     @member = current_user.member
     redirect_to action: 'sign_up' if @member.nil?
-
-    @maximum_grade = Member.maximum('grade')
-    @minimum_grade = Member.minimum('grade')
   end
 
   def sign_up
@@ -39,6 +37,13 @@ class MembersController < ApplicationController
     str = params[:str]
     members = Member.search(str)
     render :json => { members: members }
+  end
+
+  private
+
+  def get_grades
+    @maximum_grade = Member.maximum('grade')
+    @minimum_grade = Member.minimum('grade')
   end
 
 end
