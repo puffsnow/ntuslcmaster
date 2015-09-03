@@ -5,6 +5,7 @@
 $(document).ready ->
   $(".select_grade").change ->
     grade = $(this).val()
+    select_member_dom = $(this).next(".select_member")
     if grade == "0"
       return
     $.ajax
@@ -12,9 +13,11 @@ $(document).ready ->
       dataType: "json"
       data: { str: grade }
       error: (jqXHR, textStatus, errorThrown) ->
-        alert('wrong')
       success: (data, textStatus, jqXHR) ->
-        alert(data)
+        select_member_dom.children("option").remove()
+        select_member_dom.append("<option value=\"0\"> 請選擇成員 </option>")
+        members = data.members
+        select_member_dom.append("<option value=\"" + member.id + "\"> " + member.name + " </option>") for member in members
   return
 
 
