@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   has_one :member, :class_name => 'Member', :foreign_key => 'user_id'
+  has_many :member_register, :class_name => 'Member_register', :foreign_key => 'user_id'
 end

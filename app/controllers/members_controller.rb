@@ -3,9 +3,14 @@ class MembersController < ApplicationController
 
   def index
     @member = current_user.member
+    redirect_to action: 'sign_up' if @member.nil?
 
     @maximum_grade = Member.maximum('grade')
     @minimum_grade = Member.minimum('grade')
+  end
+
+  def sign_up
+
   end
 
   def admin
