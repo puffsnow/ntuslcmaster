@@ -9,7 +9,7 @@ class Member < ActiveRecord::Base
   def self.search str
     grade = str.to_i
     if grade > 0
-      members = Member.find_by_grade(grade)
+      members = Member.select(:id, :name, :grade).where("grade = ?", str)
     else
       members = Member.select(:id, :name, :grade).where("name like ?", "%" + str + "%")
     end
