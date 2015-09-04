@@ -18,6 +18,22 @@ $(document).ready ->
         select_member_dom.append("<option value=\"0\"> 請選擇成員 </option>")
         members = data.members
         select_member_dom.append("<option value=\"" + member.id + "\"> " + member.name + " </option>") for member in members
+
+  $(".register_exist_member_field > .submit").click ->
+    member_id = $(".register_exist_member_field .select_member").val()
+    if member_id == "0"
+      alert("請選擇一個成員") 
+      return
+    $.ajax
+      url: "/members/link"
+      dataType: "json"
+      method: "POST"
+      data: { member_id: member_id }
+      error: (jqXHR, textStatus, errorThrown) ->
+      success: (data, textStatus, jqXHR) ->
+        # alert(data.response.success)
+        # alert(data.response.message)
+
   return
 
 
