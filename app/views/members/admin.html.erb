@@ -1,0 +1,34 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>級別</th>
+      <th>姓名</th>
+      <th>建立新社員/登記為已存在社員</th>
+      <th>FB連結</th>
+      <th>管理員操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @member_registers.each { |register| %>
+      <% user = register.user %>
+      <% if register.member_id != nil %>
+        <% member = Member.find(register.member_id) %>
+        <tr>
+          <td><%= member.grade %></td>
+          <td><%= member.name %></td>
+          <td>登記為既有社員</td>
+          <td><a href="https://www.facebook.com/profile.php?id=<%= user.fb_id %>">facebook</a></td>
+          <td></td>
+        </tr>
+      <% else %>
+        <tr>
+          <td><%= register.grade %></td>
+          <td><%= register.name %></td>
+          <td>新建立社員身份</td>
+          <td><a href="https://www.facebook.com/profile.php?id=<%= user.fb_id %>">facebook</a></td>
+          <td></td>
+        </tr>
+      <% end %>
+    <% } %>
+  </tbody>
+</table>

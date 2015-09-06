@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   #   resources :products
   get   'members/search' => 'members#search'
   get   'members/sign_up'=> 'members#sign_up'
+  get   'members/admin'  => 'members#admin'
   post  'members/register'   => 'members#register'
   resources :members
 

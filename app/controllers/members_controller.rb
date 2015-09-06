@@ -18,7 +18,8 @@ class MembersController < ApplicationController
   end
 
   def admin
-    
+    redirect_to action: 'index' if current_user.is_admin == false
+    @member_registers = MemberRegister.pending
   end
 
 
@@ -42,6 +43,7 @@ class MembersController < ApplicationController
     member_registers = current_user.member_registers
 
     if member_id != nil && member_id > 0
+      member = Member.find(member_id)
       render_error_message("您已經擁有社員身份，無法再申請") if current_user.member != nil
       render_error_message("您已經有一份申請正等待管理員核可") if member_registers.any? { |register| register.accepted.nil? }
       render_error_message("您申請的社員不存在，請再確認") if member.nil?
@@ -64,7 +66,7 @@ class MembersController < ApplicationController
   end
 
   def accept
-    
+
   end
 
   def search
