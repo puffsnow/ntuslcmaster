@@ -27,6 +27,14 @@ class MembersController < ApplicationController
 
   end
 
+  def update
+
+  end
+
+  def destroy
+
+  end 
+
   def register
     member_id = params[:member_id].to_i if params[:member_id] != nil
     grade = params[:grade].to_i if params[:grade] != nil && params[:grade].to_i > 0
@@ -55,13 +63,9 @@ class MembersController < ApplicationController
     render :json => { response: response }
   end
 
-  def update
-
+  def accept
+    
   end
-
-  def destroy
-
-  end 
 
   def search
     str = params[:str]
