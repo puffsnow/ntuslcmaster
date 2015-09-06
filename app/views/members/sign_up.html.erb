@@ -1,14 +1,17 @@
-<div>
-請建立一個您的社員身份，如果已經存在，請直接選擇，否則請建立一個新的社員身份：
-</div>
-<div class="register_exist_member_field">
-  尋找已經存在的社員：
-  <%= render "filter_members" %>
-  <button class="submit">登記為此社員</button>
-</div>
-<div class="register_new_member_field">
-  建立一個新的社員：
-  <%= text_field_tag "grade" %>
-  <%= text_field_tag "name" %>
-  <button class="submit">建立並登記為此社員</button>
-</div>
+<% if @no_await_register %>
+  <h4>請建立一個您的社員身份，如果已經存在，請直接選擇，否則請建立一個新的社員身份：</h4>
+  <div class="register_exist_member_field">
+    <h4>尋找已經存在的社員：</h4>
+    <%= render "filter_members" %>
+    <button class="submit">登記為此社員</button>
+  </div>
+  <div class="register_new_member_field">
+    <h4>建立一個新的社員：</h4>
+    <%= text_field_tag "grade" %>
+    <%= text_field_tag "name" %>
+    <button class="submit">建立並登記為此社員</button>
+  </div>
+<% else %>
+  <h4>您已經有一份社員申請正在等待管理員核可中：</h4>
+  <h4><%= "B" + @member.grade.to_s + " " + @member.name %></h4>
+<% end %>

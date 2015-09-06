@@ -8,7 +8,13 @@ class MembersController < ApplicationController
   end
 
   def sign_up
-
+    @no_await_register = true
+    member_registers = current_user.member_registers
+    if member_registers.any? { |register| register.accepted.nil? }
+      @member_register = member_registers.select{ |register| register.accepted.nil? }.first
+      @member = Member.find(@member_register.member_id)
+      @no_await_register = false
+    end
   end
 
   def admin
