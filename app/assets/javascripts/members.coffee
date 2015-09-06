@@ -25,7 +25,7 @@ $(document).ready ->
       alert("請選擇一個成員") 
       return
     $.ajax
-      url: "/members/link"
+      url: "/members/register"
       dataType: "json"
       method: "POST"
       data: { member_id: member_id }
@@ -34,6 +34,23 @@ $(document).ready ->
         # alert(data.response.success)
         # alert(data.response.message)
 
-  return
+  $(".register_new_member_field > .submit").click ->
+    grade = parseInt($(".register_new_member_field input[name=\"grade\"]").val())
+    name = $(".register_new_member_field input[name=\"name\"]").val()
+    if isNaN(grade) || grade == 0
+      alert("請輸入級別")
+      return
+    if name == ""
+      alert("請輸入姓名")
+      return
+    $.ajax
+      url: "/members/register"
+      dataType: "json"
+      method: "POST"
+      data: { grade: grade, name: name }
+      error: (jqXHR, textStatus, errorThrown) ->
+      success: (data, textStatus, jqXHR) ->
+        alert(data.response.success)
+        alert(data.response.message)
 
 

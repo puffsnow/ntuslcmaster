@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   #   resources :products
   get   'members/search' => 'members#search'
   get   'members/sign_up'=> 'members#sign_up'
-  post  'members/link'   => 'members#link'
+  post  'members/register'   => 'members#register'
   resources :members
 
   # Example resource route with options:
