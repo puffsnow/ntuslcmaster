@@ -11,7 +11,10 @@
     <%= text_field_tag "name" %>
     <button class="submit">建立並登記為此社員</button>
   </div>
-<% else %>
+<% elsif @member != nil %>
   <h4>您已經有一份社員申請正在等待管理員核可中：</h4>
   <h4><%= "B" + @member.grade.to_s + " " + @member.name %></h4>
+<% else %>
+  <h4>您已經有一份社員申請正在等待管理員核可中：</h4>
+  <h4><%= "B" + @member_register.grade.to_s + " " + @member_register.name %></h4>
 <% end %>
