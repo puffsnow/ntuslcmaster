@@ -17,7 +17,7 @@
           <td><%= member.grade %></td>
           <td><%= member.name %></td>
           <td>登記為既有社員</td>
-          <td><a href="https://www.facebook.com/profile.php?id=<%= user.fb_id %>">facebook</a></td>
+          <td><a href="<%= user.url %>">facebook</a></td>
           <td></td>
         </tr>
       <% else %>
@@ -25,7 +25,7 @@
           <td><%= register.grade %></td>
           <td><%= register.name %></td>
           <td>新建立社員身份</td>
-          <td><a href="https://www.facebook.com/profile.php?id=<%= user.fb_id %>">facebook</a></td>
+          <td><a href="<%= user.url %>">facebook</a></td>
           <td></td>
         </tr>
       <% end %>
