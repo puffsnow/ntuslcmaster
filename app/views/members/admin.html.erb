@@ -18,7 +18,10 @@
           <td><%= member.name %></td>
           <td>登記為既有社員</td>
           <td><a href="<%= user.url %>">facebook</a></td>
-          <td></td>
+          <td>
+            <a href="/members/accept?id=<%= register.id %>">承認</a>
+            <a href="/members/reject?id=<%= register.id %>">否定</a>
+          </td>
         </tr>
       <% else %>
         <tr>
@@ -26,7 +29,10 @@
           <td><%= register.name %></td>
           <td>新建立社員身份</td>
           <td><a href="<%= user.url %>">facebook</a></td>
-          <td></td>
+          <td>
+            <a href="/members/accept?id=<%= register.id %>">承認</a>
+            <a href="/members/reject?id=<%= register.id %>">否定</a>
+          </td>
         </tr>
       <% end %>
     <% } %>

@@ -44,29 +44,57 @@ class MembersController < ApplicationController
 
     if member_id != nil && member_id > 0
       member = Member.find(member_id)
-      render_error_message("您已經擁有社員身份，無法再申請") if current_user.member != nil
-      render_error_message("您已經有一份申請正等待管理員核可") if member_registers.any? { |register| register.accepted.nil? }
-      render_error_message("您申請的社員不存在，請再確認") if member.nil?
-      render_error_message("您申請的社員已經被註冊，請再確認") if member.user_id != nil && member.user_id > 0
+      return render_error_message("您已經擁有社員身份，無法再申請") if current_user.member != nil
+      return render_error_message("您已經有一份申請正等待管理員核可") if member_registers.any? { |register| register.accepted.nil? }
+      return render_error_message("您申請的社員不存在，請再確認") if member.nil?
+      return render_error_message("您申請的社員已經被註冊，請再確認") if member.user_id != nil && member.user_id > 0
 
       member_register = current_user.member_registers.create(member_id: member_id)
-      render_error_message("系統錯誤，請向管理員確認") if member_register.nil?      
+      return render_error_message("系統錯誤，請向管理員確認") if member_register.nil?      
     else
-      render_error_message("您輸入的級別有問題，請再確認") if grade <= 50 
-      render_error_message("您輸入的姓名有問題，請再確認") if name.nil? || name == ""
+      return render_error_message("您輸入的級別有問題，請再確認") if grade <= 50 
+      return render_error_message("您輸入的姓名有問題，請再確認") if name.nil? || name == ""
 
       member_register = current_user.member_registers.create(grade: grade, name: name)
-      render_error_message("系統錯誤，請向管理員確認") if member_register.nil?
+      return render_error_message("系統錯誤，請向管理員確認") if member_register.nil?
     end
 
-    response = Hash.new
-    response["success"] = true
-
-    render :json => { response: response }
+    render_success
   end
 
   def accept
+    return render_error_message("您沒有這個權限") if current_user.is_admin == false
+    member_register = MemberRegister.find(params[:id])
+    return render_error_message("這個申請不存在") if member_register.nil? || member_register.accept != nil
+    user = member_register.user
+    return render_error_message("這個用戶已經有其他社員身份") if user.member != nil
+    if member_register.member_id.nil?
+      member = Member.new
+      member.grade = member_register.grade
+      member.name = member_register.name
+      member.save
+      user.member = member
+      user.save
+    else
+      user.member = Member.find(member_register.member_id)
+      user.save
+    end
+    member_register.is_accept = true
+    member_register.admin_user_id = current_user.id
+    member_register.save
 
+    render_success
+  end
+
+  def reject
+    return render_error_message("您沒有這個權限") if current_user.is_admin == false
+    member_register = MemberRegister.find(params[:id])
+    return render_error_message("這個申請不存在") if member_register.nil? || member_register.accept != nil
+    member_register.is_accept = false
+    member_register.admin_user_id = current_user.id
+    member_register.save
+
+    render_success
   end
 
   def search
@@ -86,6 +114,12 @@ class MembersController < ApplicationController
     response = Hash.new
     response["success"] = false
     response["message"] = message
+    render :json => { response: response }
+  end
+
+  def render_success
+    response = Hash.new
+    response["success"] = true
     render :json => { response: response }
   end
 
