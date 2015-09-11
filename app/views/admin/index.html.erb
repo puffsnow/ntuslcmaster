@@ -20,8 +20,8 @@
           <td>登記為既有社員</td>
           <td><a href="<%= user.url %>">facebook</a></td>
           <td>
-            <a class="register_accept" href="/members/accept?id=<%= register.id %>">承認</a>
-            <a class="register_reject" href="/members/reject?id=<%= register.id %>">否定</a>
+            <a class="register_accept" href="/admin/accept_register?id=<%= register.id %>">承認</a>
+            <a class="register_reject" href="/admin/reject_register?id=<%= register.id %>">否定</a>
           </td>
         </tr>
       <% else %>
@@ -31,8 +31,8 @@
           <td>新建立社員身份</td>
           <td><a href="<%= user.url %>">facebook</a></td>
           <td>
-            <a class="register_accept" href="/members/accept?id=<%= register.id %>">承認</a>
-            <a class="register_reject" href="/members/reject?id=<%= register.id %>">否定</a>
+            <a class="register_accept" href="/admin/accept_register?id=<%= register.id %>">承認</a>
+            <a class="register_reject" href="/admin/reject_register?id=<%= register.id %>">否定</a>
           </td>
         </tr>
       <% end %>

@@ -14,13 +14,15 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+  get   'members/index'  => 'members#index'
   get   'members/search' => 'members#search'
   get   'members/sign_up'=> 'members#sign_up'
-  get   'members/admin'  => 'members#admin'
   post  'members/register'   => 'members#register'
-  post  'members/accept' => 'members#accept'
-  post  'members/reject' => 'members#reject'
   resources :members
+
+  get   'admin/'   =>  'admin#index'
+  post  'admin/accept_register' => 'admin#accept_register'
+  post  'admin/reject_register' => 'admin#reject_register'
 
   # Example resource route with options:
   #   resources :products do
