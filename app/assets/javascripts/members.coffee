@@ -53,4 +53,29 @@ $(document).ready ->
         alert(data.response.success)
         alert(data.response.message)
 
+  $("a.register_accept").click (event)->
+    event.preventDefault()
+    $.ajax
+      url: $(this).attr("href")
+      dataType: "json"
+      method: "POST"
+      error: (jqXHR, textStatus, errorThrown) ->
+      success: (data, textStatus, jqXHR) ->
+        alert(data.response.success)
+        alert(data.response.message)
+
+
+  $("a.register_reject").click (event)->
+    event.preventDefault()
+    $.ajax
+      url: $(this).attr("href")
+      dataType: "json"
+      method: "POST"
+      error: (jqXHR, textStatus, errorThrown) ->
+      success: (data, textStatus, jqXHR) ->
+        alert(data.response.success)
+        alert(data.response.message)
+
+  return
+
 

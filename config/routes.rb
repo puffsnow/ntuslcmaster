@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get   'members/sign_up'=> 'members#sign_up'
   get   'members/admin'  => 'members#admin'
   post  'members/register'   => 'members#register'
+  post  'members/accept' => 'members#accept'
+  post  'members/reject' => 'members#reject'
   resources :members
 
   # Example resource route with options:
