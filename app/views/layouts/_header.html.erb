@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">尋云手語社師徒網</a>
+      <a class="navbar-brand" href="/">尋云手語社資訊網</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -36,6 +36,9 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
+        <% if current_user && current_user.is_admin %>
+          <li><a href="/admin">後台管理</a></li>
+        <% end %>
         <% if current_user %>
           <li><a href="/members">資料管理</a></li>
         <% else %>
