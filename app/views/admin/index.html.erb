@@ -39,3 +39,28 @@
     <% } %>
   </tbody>
 </table>
+
+<div>
+  <h4>建立新社員：</h4>
+  <input type="text" name="grade" />
+  <input type="text" name="name" />
+  <button>上傳</button>
+</div>
+
+<div>
+  <h4>刪除社員：</h4>
+  <%= render "/members/filter_members" %>
+  <button>上傳</button>
+</div>
+
+<div>
+  <h4>修改社員關係：</h4>
+  師父<%= render "/members/filter_members" %>
+  徒弟<%= render "/members/filter_members" %>
+  <select>
+    <option value="0">無關係</option>
+    <option value="1">正師徒</option>
+    <option value="2">地師徒</option>
+  </select>
+  <button>上傳</button>
+</div>
