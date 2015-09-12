@@ -64,11 +64,6 @@ class MembersController < ApplicationController
 
   private
 
-  def get_grades
-    @maximum_grade = Member.maximum('grade')
-    @minimum_grade = Member.minimum('grade')
-  end
-
   def render_error_message(message)
     response = Hash.new
     response["success"] = false
