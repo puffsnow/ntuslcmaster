@@ -40,20 +40,20 @@
   </tbody>
 </table>
 
-<div>
+<div id="create_member_field">
   <h4>建立新社員：</h4>
   <input type="text" name="grade" />
   <input type="text" name="name" />
-  <button>上傳</button>
+  <button class="submit">上傳</button>
 </div>
 
-<div>
+<div id="destroy_member_field">
   <h4>刪除社員：</h4>
   <%= render "/members/filter_members" %>
-  <button>上傳</button>
+  <button class="submit">上傳</button>
 </div>
 
-<div>
+<div id="update_member_relation_field">
   <h4>修改社員關係：</h4>
   師父<%= render "/members/filter_members" %>
   徒弟<%= render "/members/filter_members" %>
@@ -62,5 +62,5 @@
     <option value="1">正師徒</option>
     <option value="2">地師徒</option>
   </select>
-  <button>上傳</button>
+  <button class="submit">上傳</button>
 </div>

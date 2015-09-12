@@ -17,19 +17,6 @@ class MembersController < ApplicationController
     end
   end
 
-
-  def create
-
-  end
-
-  def update
-
-  end
-
-  def destroy
-
-  end 
-
   def register
     member_id = params[:member_id].to_i if params[:member_id] != nil
     grade = params[:grade].to_i if params[:grade] != nil && params[:grade].to_i > 0
@@ -60,21 +47,6 @@ class MembersController < ApplicationController
     str = params[:str]
     members = Member.search(str)
     render :json => { members: members }
-  end
-
-  private
-
-  def render_error_message(message)
-    response = Hash.new
-    response["success"] = false
-    response["message"] = message
-    render :json => { response: response }
-  end
-
-  def render_success
-    response = Hash.new
-    response["success"] = true
-    render :json => { response: response }
   end
 
 end

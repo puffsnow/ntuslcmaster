@@ -10,5 +10,18 @@ class ApplicationController < ActionController::Base
     @maximum_grade = Member.maximum('grade')
     @minimum_grade = Member.minimum('grade')
   end
+
+  def render_error_message(message)
+    response = Hash.new
+    response["success"] = false
+    response["message"] = message
+    render :json => { response: response }
+  end
+
+  def render_success
+    response = Hash.new
+    response["success"] = true
+    render :json => { response: response }
+  end
   
 end

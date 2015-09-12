@@ -18,9 +18,9 @@ Rails.application.routes.draw do
   get   'members/search' => 'members#search'
   get   'members/sign_up'=> 'members#sign_up'
   post  'members/register'   => 'members#register'
-  resources :members
 
   get   'admin/'   =>  'admin#index'
+  post  'admin/create_member'   => 'admin#create_member'
   post  'admin/accept_register' => 'admin#accept_register'
   post  'admin/reject_register' => 'admin#reject_register'
 
