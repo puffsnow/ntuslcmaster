@@ -21,7 +21,9 @@ Rails.application.routes.draw do
 
   get   'admin/'   =>  'admin#index'
   post  'admin/create_member'   => 'admin#create_member'
+  post  'admin/update_member'   => 'admin#update_member'
   post  'admin/destroy_member'  => 'admin#destroy_member'
+  post  'admin/update_relation' => 'admin#update_relation'
   post  'admin/accept_register' => 'admin#accept_register'
   post  'admin/reject_register' => 'admin#reject_register'
 

@@ -1,11 +1,11 @@
 <% if @no_await_register %>
   <h4>請建立一個您的社員身份，如果已經存在，請直接選擇，否則請建立一個新的社員身份：</h4>
-  <div class="register_exist_member_field">
+  <div id="register_exist_member_field">
     <h4>尋找已經存在的社員：</h4>
     <%= render "filter_members" %>
     <button class="submit">登記為此社員</button>
   </div>
-  <div class="register_new_member_field">
+  <div id="register_new_member_field">
     <h4>建立一個新的社員：</h4>
     <%= text_field_tag "grade" %>
     <%= text_field_tag "name" %>

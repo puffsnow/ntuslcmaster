@@ -46,7 +46,7 @@ $(document).ready ->
         alert(data.response.message)
 
   $("#destroy_member_field > .submit").click ->
-    member_id = $("#destroy_member_field .select_member").val()
+    member_id = $("#destroy_member_field .member_select").val()
     if member_id == ""
       alert("請選擇社員")
       return
@@ -59,5 +59,8 @@ $(document).ready ->
       success: (data, textStatus, jqXHR) ->
         alert(data.response.success)
         alert(data.response.message)
+
+  $("#update_member_relation_field > .submit").click ->
+    
 
   return
