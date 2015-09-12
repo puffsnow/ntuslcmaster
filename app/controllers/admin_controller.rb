@@ -7,13 +7,22 @@ class AdminController < ApplicationController
   end
 
   def create_member
-    render_error_message("輸入級別有問題") if params["grade"].to_i < 50
-    render_error_message("輸入姓名有問題") if params["name"].nil? || params["name"].empty?
+    return render_error_message("輸入級別有問題") if params["grade"].to_i < 50
+    return render_error_message("輸入姓名有問題") if params["name"].nil? || params["name"].empty?
     member = Member.new
     member.grade = params["grade"].to_i
     member.name = params["name"]
     member.save
-    render_error_message("建立社員時發生錯誤，請洽詢管理員") if member.id.nil?
+    return render_error_message("建立社員時發生錯誤，請洽詢管理員") if member.id.nil?
+
+    render_success
+  end
+
+  def destroy_member
+    return render_error_message("輸入有問題") if params["member_id"].nil? || params["member_id"].to_i <= 0
+    member = Member.find_by_id(params["member_id"].to_i)
+    return render_error_message("無法找到您指定的社員") if member.nil?
+    member.delete
 
     render_success
   end

@@ -45,4 +45,19 @@ $(document).ready ->
         alert(data.response.success)
         alert(data.response.message)
 
+  $("#destroy_member_field > .submit").click ->
+    member_id = $("#destroy_member_field .select_member").val()
+    if member_id == ""
+      alert("請選擇社員")
+      return
+    $.ajax
+      url: "/admin/destroy_member"
+      dataType: "json"
+      method: "POST"
+      data: { member_id: member_id }
+      error: (jqXHR, textStatus, errorThrown) ->
+      success: (data, textStatus, jqXHR) ->
+        alert(data.response.success)
+        alert(data.response.message)
+
   return
