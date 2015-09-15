@@ -61,6 +61,17 @@ $(document).ready ->
         alert(data.response.message)
 
   $("#update_member_relation_field > .submit").click ->
-    
+    master_id = $("#update_member_relation_field .member_select:first").val()
+    apprentice_id = $("#update_member_relation_field .member_select:eq(1)").val()
+    type = $("#update_member_relation_field .relation_type_select").val()
+    $.ajax
+      url: "/admin/update_relation"
+      dataType: "json"
+      method: "POST"
+      data: { master_id: master_id, apprentice_id: apprentice_id, type: type }
+      error: (jqXHR, textStatus, errorThrown) ->
+      success: (data, textStatus, jqXHR) ->
+        alert(data.response.success)
+        alert(data.response.message)
 
   return

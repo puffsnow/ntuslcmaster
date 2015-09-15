@@ -60,6 +60,31 @@ class AdminController < ApplicationController
     render_success
   end
 
+  def update_relation
+    master_id = params[:master_id].to_i
+    apprentice_id = params[:apprentice_id].to_i
+    type = params[:type].to_i
+    return render_error_message("您未選擇社員或社員不存在") if master_id == 0 || apprentice_id == 0
+    master = Member.find_by_id(master_id)
+    apprentice = Member.find_by_id(apprentice_id)
+    return render_error_message("您未選擇社員或社員不存在") if master.nil? || apprentice.nil?
+    relation = Relation.where("master_id = ? AND apprentice_id = ?", master_id, apprentice_id).first
+    if relation.nil? && type > 0
+      relation = Relation.new
+      relation.master_id = master_id
+      relation.apprentice_id = apprentice_id
+      relation.is_primary = type == 1 ? true : false
+      relation.save
+    elsif relation != nil && type == 0
+      relation.delete
+    elsif relation != nil
+      relation.is_primary = type == 1 ? true : false
+      relation.save
+    end
+
+    render_success
+  end
+
   private
 
   def authenticate_admin
