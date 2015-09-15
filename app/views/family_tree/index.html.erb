@@ -4,10 +4,15 @@
     <th><button class="btn btn-primary btn-grade"><%= i %></button></th>
   <% end %>
 </tr>
-<tr id="member_row">
+<tr class="member_row">
+  <% for i in @minimum_grade..@maximum_grade %>
+    <td class="member_column">
+      <% @all_members.each do |member| %>
+        <% if member.grade == i %>
+          <button class="btn btn-member"><%= member.name %></button><br />
+        <% end %>
+      <% end %>
+    </td>
+  <% end %>
 </tr>
 </table>
-
-<% @all_members.each do |member| %>
-  <%= member.grade.to_s + member.name %>
-<% end %>
