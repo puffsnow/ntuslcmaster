@@ -45,16 +45,24 @@ $(document).ready ->
         alert(data.response.success)
         alert(data.response.message)
 
-  $("#destroy_member_field > .submit").click ->
-    member_id = $("#destroy_member_field .member_select").val()
+  $("#update_member_field > .submit").click ->
+    member_id = $("#update_member_field .member_select").val()
+    grade = parseInt($("#update_member_field input[name=\"grade\"]").val())
+    name = $("#update_member_field input[name=\"name\"]").val()
     if member_id == ""
       alert("請選擇社員")
       return
+    if isNaN(grade) || grade == 0
+      alert("請輸入級別")
+      return
+    if name == ""
+      alert("請輸入姓名")
+      return
     $.ajax
-      url: "/admin/destroy_member"
+      url: "/admin/update_member"
       dataType: "json"
       method: "POST"
-      data: { member_id: member_id }
+      data: { member_id: member_id, grade: grade, name: name }
       error: (jqXHR, textStatus, errorThrown) ->
       success: (data, textStatus, jqXHR) ->
         alert(data.response.success)
@@ -69,6 +77,21 @@ $(document).ready ->
       dataType: "json"
       method: "POST"
       data: { master_id: master_id, apprentice_id: apprentice_id, type: type }
+      error: (jqXHR, textStatus, errorThrown) ->
+      success: (data, textStatus, jqXHR) ->
+        alert(data.response.success)
+        alert(data.response.message)
+
+  $("#destroy_member_field > .submit").click ->
+    member_id = $("#destroy_member_field .member_select").val()
+    if member_id == ""
+      alert("請選擇社員")
+      return
+    $.ajax
+      url: "/admin/destroy_member"
+      dataType: "json"
+      method: "POST"
+      data: { member_id: member_id }
       error: (jqXHR, textStatus, errorThrown) ->
       success: (data, textStatus, jqXHR) ->
         alert(data.response.success)

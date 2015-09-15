@@ -18,6 +18,17 @@ class AdminController < ApplicationController
     render_success
   end
 
+  def update_member
+    return render_error_message("輸入級別有問題") if params["grade"].to_i < 50
+    return render_error_message("輸入姓名有問題") if params["name"].nil? || params["name"].empty?
+    member = Member.find_by_id(params["member_id"].to_i)
+    return render_error_message("無法找到您指定的社員") if member.nil?
+    member.attributes = { grade: params["grade"].to_i, name: params["name"] }
+    member.save
+
+    render_success
+  end
+
   def destroy_member
     return render_error_message("輸入有問題") if params["member_id"].nil? || params["member_id"].to_i <= 0
     member = Member.find_by_id(params["member_id"].to_i)
