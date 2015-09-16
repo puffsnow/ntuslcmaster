@@ -1,6 +1,5 @@
 class MembersController < ApplicationController
   before_action :authenticate_user!, except: :search
-  before_action :get_grades
 
   def index
     @member = current_user.member

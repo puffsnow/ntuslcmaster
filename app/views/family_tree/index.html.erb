@@ -1,18 +1,18 @@
 <table class="family_tree_table">
-<tr class="grade_row">
-  <% for i in @minimum_grade..@maximum_grade %>
-    <th><button class="btn btn-primary btn-grade"><%= i %></button></th>
-  <% end %>
-</tr>
-<tr class="member_row">
-  <% for i in @minimum_grade..@maximum_grade %>
-    <td class="member_column">
-      <% @all_members.each do |member| %>
-        <% if member.grade == i %>
-          <button class="btn btn-member"><%= member.name %></button><br />
+  <tr class="grade_row">
+    <% for i in @minimum_grade..@maximum_grade %>
+      <th><button class="btn btn-primary btn-grade"><%= i %></button></th>
+    <% end %>
+  </tr>
+  <tr class="member_row">
+    <% for i in @minimum_grade..@maximum_grade %>
+      <td class="member_column">
+        <% @all_members.each do |member| %>
+          <% if member.grade == i %>
+            <button class="btn btn-member" id="m<%= member.id %>"><%= member.name %></button><br />
+          <% end %>
         <% end %>
-      <% end %>
-    </td>
-  <% end %>
-</tr>
+      </td>
+    <% end %>
+  </tr>
 </table>
