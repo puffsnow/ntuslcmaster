@@ -29,9 +29,9 @@ class FamilyTreeController < ApplicationController
     relations = []
     member = Member.find(member_id)
     if include_sub == true
-      relations += member.master_relations.where( {is_primary: false} )
+      relations += member.master_relations.select(:id, :master_id, :apprentice_id, :is_primary).where( {is_primary: false} )
     end
-    primary_master_relations = member.master_relations.where( {is_primary: true} )
+    primary_master_relations = member.master_relations.select(:id, :master_id, :apprentice_id, :is_primary).where( {is_primary: true} )
     relations += primary_master_relations
     primary_master_relations.each do |relation|
       relations += get_master_relations(relation.master_id, false)
@@ -43,9 +43,9 @@ class FamilyTreeController < ApplicationController
     relations = []
     member = Member.find(member_id)
     if include_sub == true
-      relations += member.apprentice_relations.where( {is_primary: false} )
+      relations += member.apprentice_relations.select(:id, :master_id, :apprentice_id, :is_primary).where( {is_primary: false} )
     end
-    primary_apprentice_relations = member.apprentice_relations.where( {is_primary: true} )
+    primary_apprentice_relations = member.apprentice_relations.select(:id, :master_id, :apprentice_id, :is_primary).where( {is_primary: true} )
     relations += primary_apprentice_relations
     primary_apprentice_relations.each do |relation|
       relations += get_apprentice_relations(relation.apprentice_id, false)
