@@ -13,7 +13,7 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <!--<ul class="nav navbar-nav">
         <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Link</a></li>
         <li class="dropdown">
@@ -34,17 +34,16 @@
           <input type="text" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+      </form>-->
       <ul class="nav navbar-nav navbar-right">
         <% if current_user && current_user.is_admin %>
-          <li><a href="/admin">後台管理</a></li>
+          <li><a href="/admin/index">後台管理</a></li>
         <% end %>
         <% if current_user %>
-          <li><a href="/members">資料管理</a></li>
+          <li><a href="/members/index">資料管理</a></li>
+          <li><%= link_to('登出', destroy_user_session_path, :method => :delete) %></li>
         <% else %>
-          <li><a href="/users/sign_in">登入</a></li>
-          <li><a  href="/users/sign_up">申請帳號</a></li>
-          <li><%= link_to("Facebook Login", Setting.domain + user_omniauth_authorize_path(:facebook)) %></li>
+          <li><%= link_to("Facebook登入", Setting.domain + user_omniauth_authorize_path(:facebook)) %></li>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->

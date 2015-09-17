@@ -1,4 +1,4 @@
-<h4>社員登記：</h4>
+<!--<h4>社員登記：</h4>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -38,22 +38,22 @@
       <% end %>
     <% } %>
   </tbody>
-</table>
+</table>-->
 
 <div id="create_member_field">
   <h4>建立新社員：</h4>
-  <input type="text" name="grade" />
-  <input type="text" name="name" />
-  <button class="submit">上傳</button>
+  <input type="text" name="grade" placeholder="級別" class="form-control"/>
+  <input type="text" name="name"  placeholder="姓名" class="form-control"/>
+  <button class="submit btn">上傳</button>
 </div>
 
 <div id="update_member_field">
   <h4>修改社員基本資料：</h4>
   <%= render "/members/filter_members" %>
-  <input type="text" name="grade" />
-  <input type="text" name="name" />
-  <button class="submit">上傳</button>
-</div>
+  <input type="text" name="grade" placeholder="級別" class="form-control"/>
+  <input type="text" name="name" placeholder="姓名" class="form-control"/>
+  <button class="submit btn">上傳</button>
+</div> 
 
 <div id="update_member_relation_field">
   <h4>修改社員關係：</h4>
@@ -65,7 +65,7 @@
     <option value="2">地師徒</option>
   </select>
   <button class="submit">上傳</button>
-</div>
+</div>  
 
 <div id="destroy_member_field">
   <h4>刪除社員：</h4>
