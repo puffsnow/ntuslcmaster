@@ -8,8 +8,8 @@
 </head>
 <body>
 <%= render "layouts/header" %>
-<% if notice != nil %><p class="notice"><%= notice %></p><% end %>
-<% if alert != nil %><p class="alert"><%= alert %></p><% end %>
+<% if notice != nil %><p class="notice" style="display: none;"><%= notice %></p><% end %>
+<% if alert != nil %><p class="alert" style="display: none;"><%= alert %></p><% end %>
 
 <%= yield %>
 

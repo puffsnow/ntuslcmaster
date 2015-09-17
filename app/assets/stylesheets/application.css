@@ -12,4 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *
+ *= require alertify.core.css
+ *= require alertify.default.css
  */
