@@ -15,3 +15,29 @@
     margin: 5px 20px;   
   }
 }
+
+.primary_relation {
+    position: absolute; /* allows to position it anywhere */
+    width: 1px; /* your chosen line width */
+    background-color:#C22; /* line color */
+    z-index: 0; /* make sure this is above your other elements */
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+    -o-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;
+    /* transform-origin sets rotation around top left (instead of the geometrical center) */
+}
+
+.sub_relation{
+    position: absolute; /* allows to position it anywhere */
+    width: 1px; /* your chosen line width */
+    background-color:#09C; /* line color */
+    z-index: 0; /* make sure this is above your other elements */
+    -webkit-transform-origin: top left;
+    -moz-transform-origin: top left;
+    -o-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;
+    /* transform-origin sets rotation around top left (instead of the geometrical center) */
+}
