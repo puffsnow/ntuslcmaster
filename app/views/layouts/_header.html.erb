@@ -43,7 +43,7 @@
           <!-- <li><a href="/members/index">資料管理</a></li> -->
           <li><%= link_to('登出', destroy_user_session_path, :method => :delete) %></li>
         <% else %>
-          <li><%= link_to("Facebook登入", Setting.domain + user_omniauth_authorize_path(:facebook)) %></li>
+          <li><%= link_to("Facebook登入", user_omniauth_authorize_path(:facebook)) %></li>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
