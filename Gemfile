@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -58,4 +58,6 @@ gem "omniauth"
 gem "omniauth-facebook" 
 gem "auto-facebook", "0.42"
 gem "mysql2", '~> 0.3.18'
+gem 'rails_12factor'
+
 
