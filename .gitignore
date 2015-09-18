@@ -16,5 +16,5 @@
 !/log/.keep
 /tmp
 
-# This file should save all the api key information
+# Ignore application configuration
 /config/application.yml

@@ -57,8 +57,10 @@ gem 'settingslogic'
 gem "omniauth"
 gem "omniauth-facebook" 
 gem "auto-facebook", "0.42"
+
 gem "pg"
 gem 'rails_12factor'
 gem 'jquery-turbolinks'
+gem "figaro"
 
 
