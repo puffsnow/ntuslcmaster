@@ -42,8 +42,8 @@ $(document).ready ->
       data: { grade: grade, name: name }
       error: (jqXHR, textStatus, errorThrown) ->
       success: (data, textStatus, jqXHR) ->
-        alert(data.response.success)
-        alert(data.response.message)
+        alertify.success("建立社員成功") if data.response.success == true
+        alertify.alert(data.response.message) if data.response.success == false
 
   $("#update_member_field > .submit").click ->
     member_id = $("#update_member_field .member_select").val()
@@ -65,8 +65,8 @@ $(document).ready ->
       data: { member_id: member_id, grade: grade, name: name }
       error: (jqXHR, textStatus, errorThrown) ->
       success: (data, textStatus, jqXHR) ->
-        alert(data.response.success)
-        alert(data.response.message)
+        alertify.success("修改社員成功") if data.response.success == true
+        alertify.alert(data.response.message) if data.response.success == false
 
   $("#update_member_relation_field > .submit").click ->
     master_id = $("#update_member_relation_field .member_select:first").val()
@@ -79,8 +79,8 @@ $(document).ready ->
       data: { master_id: master_id, apprentice_id: apprentice_id, type: type }
       error: (jqXHR, textStatus, errorThrown) ->
       success: (data, textStatus, jqXHR) ->
-        alert(data.response.success)
-        alert(data.response.message)
+        alertify.success("修改社員關係成功") if data.response.success == true
+        alertify.alert(data.response.message) if data.response.success == false
 
   $("#destroy_member_field > .submit").click ->
     member_id = $("#destroy_member_field .member_select").val()
@@ -94,7 +94,7 @@ $(document).ready ->
       data: { member_id: member_id }
       error: (jqXHR, textStatus, errorThrown) ->
       success: (data, textStatus, jqXHR) ->
-        alert(data.response.success)
-        alert(data.response.message)
+        alertify.success("刪除社員成功") if data.response.success == true
+        alertify.alert(data.response.message) if data.response.success == false
 
   return
