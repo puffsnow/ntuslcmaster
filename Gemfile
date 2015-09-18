@@ -57,5 +57,5 @@ gem 'settingslogic'
 gem "omniauth"
 gem "omniauth-facebook" 
 gem "auto-facebook", "0.42"
-gem "mysql2", 
+gem "mysql2"
 
