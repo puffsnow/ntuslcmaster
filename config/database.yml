@@ -21,9 +21,5 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  database: ntuslc_production
-  host: localhost
-  username: root
-  password:
+  adapter: postgresql
+  encoding: unicode

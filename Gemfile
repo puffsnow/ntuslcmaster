@@ -41,7 +41,7 @@ group :development, :test do
   gem 'spring'
 
   # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+  gem 'sqlite3'
 end
 
 gem 'twitter-bootstrap-rails'
@@ -57,7 +57,7 @@ gem 'settingslogic'
 gem "omniauth"
 gem "omniauth-facebook" 
 gem "auto-facebook", "0.42"
-gem "mysql2", '~> 0.3.18'
+gem "pg"
 gem 'rails_12factor'
 
 
