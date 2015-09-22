@@ -3,8 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
+
   $(".family_tree_table .btn-member").click ->
-    $("div.loading").show()
+    GlobalFunction.show_loading_mask()
     member_id = parseInt($(this).attr("id").substring(1))
     member_chosen = parseInt($("input[name='member_chosen']").val())
     if member_chosen == 0
@@ -14,7 +15,7 @@ $(document).ready ->
     else
       clear_family_tree()
       show_family_tree(member_id)
-    $("div.loading").hide()
+    # $("div.loading").hide()
 
   show_family_tree = (id) ->
     $.ajax
