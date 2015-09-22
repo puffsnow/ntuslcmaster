@@ -35,7 +35,6 @@ $(document).ready ->
     if name == ""
       alert("請輸入姓名")
       return
-    GlobalFunction.show_loading_mask()
     $.ajax
       url: "/admin/create_member"
       dataType: "json"
@@ -45,7 +44,6 @@ $(document).ready ->
       success: (data, textStatus, jqXHR) ->
         alertify.success("建立社員成功") if data.response.success == true
         alertify.alert(data.response.message) if data.response.success == false
-    GlobalFunction.hide_loading_mask()
 
   $("#update_member_field > .submit").click ->
     member_id = $("#update_member_field .member_select").val()
@@ -60,7 +58,6 @@ $(document).ready ->
     if name == ""
       alert("請輸入姓名")
       return
-    GlobalFunction.show_loading_mask()
     $.ajax
       url: "/admin/update_member"
       dataType: "json"
@@ -70,13 +67,11 @@ $(document).ready ->
       success: (data, textStatus, jqXHR) ->
         alertify.success("修改社員成功") if data.response.success == true
         alertify.alert(data.response.message) if data.response.success == false
-    GlobalFunction.hide_loading_mask()
 
   $("#update_member_relation_field > .submit").click ->
     master_id = $("#update_member_relation_field .member_select:first").val()
     apprentice_id = $("#update_member_relation_field .member_select:eq(1)").val()
     type = $("#update_member_relation_field .relation_type_select").val()
-    GlobalFunction.show_loading_mask()
     $.ajax
       url: "/admin/update_relation"
       dataType: "json"
@@ -86,14 +81,12 @@ $(document).ready ->
       success: (data, textStatus, jqXHR) ->
         alertify.success("修改社員關係成功") if data.response.success == true
         alertify.alert(data.response.message) if data.response.success == false
-    GlobalFunction.hide_loading_mask()
 
   $("#destroy_member_field > .submit").click ->
     member_id = $("#destroy_member_field .member_select").val()
     if member_id == ""
       alert("請選擇社員")
       return
-    GlobalFunction.show_loading_mask()
     $.ajax
       url: "/admin/destroy_member"
       dataType: "json"
@@ -103,4 +96,3 @@ $(document).ready ->
       success: (data, textStatus, jqXHR) ->
         alertify.success("刪除社員成功") if data.response.success == true
         alertify.alert(data.response.message) if data.response.success == false
-    GlobalFunction.hide_loading_mask()
