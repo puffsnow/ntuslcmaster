@@ -33,7 +33,7 @@ class AdminController < ApplicationController
     return render_error_message("輸入有問題") if params["member_id"].nil? || params["member_id"].to_i <= 0
     member = Member.find_by_id(params["member_id"].to_i)
     return render_error_message("無法找到您指定的社員") if member.nil?
-    member.delete
+    member.destroy
 
     render_success
   end
