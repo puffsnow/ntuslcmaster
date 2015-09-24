@@ -37,7 +37,7 @@
             <td><%= member.nil? ? register.grade : member.grade %></td>
             <td><%= member.nil? ? register.name : member.name %></td>
             <td><%= member.nil? ? "建立新社員" : "登記為既有社員" %></td>
-            <td><%= register.created_at %></td>
+            <td><%= register.created_at.strftime("%Y/%d/%m %H:%M") %></td>
             <td>
               <% if register.is_accept.nil? %>
                 等待處理
