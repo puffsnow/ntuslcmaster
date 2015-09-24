@@ -37,10 +37,10 @@
       </form>-->
       <ul class="nav navbar-nav navbar-right">
         <% if current_user && current_user.is_admin %>
-          <li><a href="/admin/index">後台管理</a></li>
+          <li><a href="/admin/index">管理員</a></li>
         <% end %>
         <% if current_user %>
-          <!-- <li><a href="/members/index">資料管理</a></li> -->
+          <li><a href="/members/index">個人資料</a></li>
           <li><%= link_to('登出', destroy_user_session_path, :method => :delete) %></li>
         <% else %>
           <li><%= link_to("Facebook登入", user_omniauth_authorize_path(:facebook)) %></li>

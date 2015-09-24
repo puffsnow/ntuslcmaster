@@ -31,12 +31,15 @@ $(document).ready ->
       data: { member_id: member_id }
       error: (jqXHR, textStatus, errorThrown) ->
       success: (data, textStatus, jqXHR) ->
-        # alert(data.response.success)
-        # alert(data.response.message)
+        if data.response.success == true
+          alertify.success("註冊社員申請已送出，請等待管理員認證")
+          location.reload()
+        else
+          alertify.alert(data.response.message) 
 
   $("#register_new_member_field > .submit").click ->
     grade = parseInt($("#register_new_member_field input[name=\"grade\"]").val())
-    name = $(".register_new_member_field input[name=\"name\"]").val()
+    name = $("#register_new_member_field input[name=\"name\"]").val()
     if isNaN(grade) || grade == 0
       alert("請輸入級別")
       return
@@ -50,9 +53,11 @@ $(document).ready ->
       data: { grade: grade, name: name }
       error: (jqXHR, textStatus, errorThrown) ->
       success: (data, textStatus, jqXHR) ->
-        alert(data.response.success)
-        alert(data.response.message)
-
+        if data.response.success == true
+          alertify.success("註冊社員申請已送出，請等待管理員認證")
+          location.reload()
+        else
+          alertify.alert(data.response.message) 
   return
 
 
