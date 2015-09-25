@@ -38,6 +38,11 @@
           </tr>
         <% end %>
       <% } %>
+      <% if @member_registers.length == 0 %>
+        <tr>
+          <td colspan="5">目前沒有待處理申請</td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
@@ -66,11 +71,11 @@
     <option value="1">正師徒</option>
     <option value="2">地師徒</option>
   </select>
-  <button class="submit">上傳</button>
+  <button class="submit btn">上傳</button>
 </div>  
 
 <div id="destroy_member_field">
   <h4>刪除社員：</h4>
   <%= render "/members/filter_members" %>
-  <button class="submit">上傳</button>
+  <button class="submit btn">上傳</button>
 </div>
