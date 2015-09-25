@@ -25,7 +25,7 @@ class MembersController < ApplicationController
     if member_id != nil && member_id > 0
       member = Member.find(member_id)
       return render_error_message("您已經擁有社員身份，無法再申請") if current_user.member != nil
-      return render_error_message("您已經有一份申請正等待管理員核可") if member_registers.any? { |register| register.accepted.nil? }
+      return render_error_message("您已經有一份申請正等待管理員核可") if member_registers.any? { |register| register.is_accept.nil? }
       return render_error_message("您申請的社員不存在，請再確認") if member.nil?
       return render_error_message("您申請的社員已經被註冊，請再確認") if member.user_id != nil && member.user_id > 0
 
