@@ -1,15 +1,14 @@
 <div>
-  <h4><%= 'B' + @member.grade.to_s + ' ' + @member.name %></h4>
+  <h4><%= @member.grade.to_s + ' ' + @member.name %></h4>
 </div>
 
-<!--
-<div>
-  <h4>基本資料：</h4>
-
+<div id="member_update_relation_field">
+  <h4>修改師徒關係：</h4>
+  <%= render "filter_members" %>
+  <select class="relation_type_select">
+    <option value="0"> 無關係 </option>
+    <option value="1"> 正師徒 </option>
+    <option value="2"> 地師徒 </option>
+  </select>
+  <button class="submit btn">上傳</button>
 </div>
-
-<div>
-  <h4>師徒關係：</h4>
-
-</div>
--->

@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
   before_action :authenticate_user!, except: :search
+  before_action :authenticate_member, only: :update_relation
 
   def index
     @member = current_user.member
@@ -42,10 +43,56 @@ class MembersController < ApplicationController
     render_success
   end
 
+  def update_relation
+    member_id = params[:member_id].to_i if params[:member_id] != nil
+    type = params[:type].to_i
+    return render_error_message("您未選擇社員或社員不存在") if member_id == 0
+    member = Member.find_by_id(member_id)
+    member_self = current_user.member
+    return render_error_message("您未選擇社員或社員不存在") if member.nil?
+    if member.grade < member_self.grade
+      master_id = member.id
+      apprentice_id = member_self.id
+    elsif member.grade > member_self.grade
+      master_id = member_self.id
+      apprentice_id = member.id
+    else
+      return render_error_message("同級別的社員不存在師徒關係")
+    end
+    
+    relation = Relation.where("master_id = ? AND apprentice_id = ?", master_id, apprentice_id).first
+    if relation.nil? && type > 0
+      relation = Relation.new
+      relation.master_id = master_id
+      relation.apprentice_id = apprentice_id
+      relation.is_primary = type == 1 ? true : false
+      relation.save
+    elsif relation != nil && type == 0
+      relation.delete
+    elsif relation != nil
+      relation.is_primary = type == 1 ? true : false
+      relation.save
+    end
+
+    render_success
+  end
+
   def search
     str = params[:str]
     members = Member.search(str)
     render :json => { members: members }
+  end
+
+  private
+
+  def authenticate_member
+    if current_user.member.nil?
+      respond_to do |format|
+        format.html { redirect_to "/members/index" }
+        format.json { render_error_message "您尚未被認證為社員，不允許進行這項操作" }
+      end
+      return false
+    end
   end
 
 end

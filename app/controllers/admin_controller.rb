@@ -79,6 +79,7 @@ class AdminController < ApplicationController
     master = Member.find_by_id(master_id)
     apprentice = Member.find_by_id(apprentice_id)
     return render_error_message("您未選擇社員或社員不存在") if master.nil? || apprentice.nil?
+    return render_error_message("師父的級別應要比徒弟大") if master.grade >= apprentice.grade
     relation = Relation.where("master_id = ? AND apprentice_id = ?", master_id, apprentice_id).first
     if relation.nil? && type > 0
       relation = Relation.new
@@ -102,7 +103,7 @@ class AdminController < ApplicationController
     if current_user.is_admin == false
       respond_to do |format|
         format.html { redirect_to "/members/index" }
-        format.json { render_error_message "You don't have access" }
+        format.json { render_error_message "你沒有管理員的權限" }
       end
       return false
     end

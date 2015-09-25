@@ -58,6 +58,19 @@ $(document).ready ->
           location.reload()
         else
           alertify.alert(data.response.message) 
+
+  $("#member_update_relation_field > .submit").click ->
+    member_id = $("#member_update_relation_field .member_select").val()
+    type = $("#member_update_relation_field .relation_type_select").val()
+    $.ajax
+      url: "/members/update_relation"
+      dataType: "json"
+      method: "POST"
+      data: { member_id: member_id, type: type }
+      error: (jqXHR, textStatus, errorThrown) ->
+      success: (data, textStatus, jqXHR) ->
+        alertify.success("修改關係成功") if data.response.success == true
+        alertify.alert(data.response.message) if data.response.success == false
   return
 
 
