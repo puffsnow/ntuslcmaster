@@ -69,10 +69,10 @@ $(document).ready ->
         alertify.success("修改社員成功") if data.response.success == true
         alertify.alert(data.response.message) if data.response.success == false
 
-  $("#update_member_relation_field > .submit").click ->
-    master_id = $("#update_member_relation_field .member_select:first").val()
-    apprentice_id = $("#update_member_relation_field .member_select:eq(1)").val()
-    type = $("#update_member_relation_field .relation_type_select").val()
+  $("#admin_update_relation_field > .submit").click ->
+    master_id = $("#admin_update_relation_field .member_select:first").val()
+    apprentice_id = $("#admin_update_relation_field .member_select:eq(1)").val()
+    type = $("#admin_update_relation_field .relation_type_select").val()
     $.ajax
       url: "/admin/update_relation"
       dataType: "json"
