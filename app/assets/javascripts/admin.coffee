@@ -5,14 +5,15 @@
 $(document).ready ->
   $("a.register_accept").click (event)->
     event.preventDefault()
+    register_row_dom = $(this).closest("tr")
     $.ajax
       url: $(this).attr("href")
       dataType: "json"
       method: "POST"
       error: (jqXHR, textStatus, errorThrown) ->
       success: (data, textStatus, jqXHR) ->
-        alert(data.response.success)
-        alert(data.response.message)
+        alertify.success("接受社員登記完成") and register_row_dom.hide() if data.response.success == true
+        alertify.alert(data.response.message) if data.response.success == false
 
 
   $("a.register_reject").click (event)->
@@ -23,8 +24,8 @@ $(document).ready ->
       method: "POST"
       error: (jqXHR, textStatus, errorThrown) ->
       success: (data, textStatus, jqXHR) ->
-        alert(data.response.success)
-        alert(data.response.message)
+        alertify.success("拒絕社員登記完成") if data.response.success == true
+        alertify.alert(data.response.message) if data.response.success == false
 
   $("#create_member_field > .submit").click ->
     grade = parseInt($("#create_member_field input[name=\"grade\"]").val())
