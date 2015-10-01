@@ -1,3 +1,11 @@
 // Place all the styles related to the members controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#filter_member_field{
+  display: inline;
+}
+.grade_select, .member_select{
+  max-width: 40%;
+  margin-bottom: 10px;
+  display: inline-block;
+}

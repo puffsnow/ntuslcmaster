@@ -1,14 +1,21 @@
-<div>
-  <h4><%= @member.grade.to_s + ' ' + @member.name %></h4>
-</div>
-
-<div id="member_update_relation_field">
-  <h4>修改師徒關係：</h4>
-  <%= render "filter_members" %>
-  <select class="relation_type_select">
-    <option value="0"> 無關係 </option>
-    <option value="1"> 正師徒 </option>
-    <option value="2"> 地師徒 </option>
-  </select>
-  <button class="submit btn">上傳</button>
+<div class="sub_container">
+  <div id="member_title_field">
+    <h4><%= @member.grade.to_s + ' ' + @member.name %></h4>
+  </div>
+  
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#">編輯個人資料</a></li>
+    <li><a href="#">我的老人聯絡網</a></li>
+  </ul>
+  
+  <div id="member_update_relation_field">
+    <h4>修改師徒關係：</h4>
+    <%= render "filter_members" %>
+    <select class="relation_type_select form-control">
+      <option value="0"> 無關係 </option>
+      <option value="1"> 正師徒 </option>
+      <option value="2"> 地師徒 </option>
+    </select>
+    <button class="submit btn">上傳</button>
+  </div>
 </div>

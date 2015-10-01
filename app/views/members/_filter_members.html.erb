@@ -1,11 +1,11 @@
 <div class="filter_member_field">
-  <select class="grade_select">
+  <select class="grade_select form-control">
     <option value="0"> 請選擇級數 </option>
     <% for i in @minimum_grade .. @maximum_grade %>
     <option value="<%= i %>"> <%= i %> </option>
     <% end %>
   </select>
-  <select class="member_select">
+  <select class="member_select form-control">
     <option value="0"> 請選擇成員 </option>
   </select>
 </div>

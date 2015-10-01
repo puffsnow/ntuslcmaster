@@ -1,81 +1,83 @@
-<div id="check_member_register_field">
-  <h4>社員登記：</h4>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>級別</th>
-        <th>姓名</th>
-        <th>建立新社員/登記為已存在社員</th>
-        <th>FB連結</th>
-        <th>管理員操作</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @member_registers.each { |register| %>
-        <% user = register.user %>
-        <% if register.member_id != nil %>
-          <% member = Member.find(register.member_id) %>
+<div class="sub_container">
+  <div id="check_member_register_field">
+    <h4>社員登記：</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>級別</th>
+          <th>姓名</th>
+          <th>建立新社員/登記為已存在社員</th>
+          <th>FB連結</th>
+          <th>管理員操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @member_registers.each { |register| %>
+          <% user = register.user %>
+          <% if register.member_id != nil %>
+            <% member = Member.find(register.member_id) %>
+            <tr>
+              <td><%= member.grade %></td>
+              <td><%= member.name %></td>
+              <td>登記為既有社員</td>
+              <td><a href="<%= user.url %>">facebook</a></td>
+              <td>
+                <a class="register_accept" href="/admin/accept_register?id=<%= register.id %>">承認</a>
+                <a class="register_reject" href="/admin/reject_register?id=<%= register.id %>">否定</a>
+              </td>
+            </tr>
+          <% else %>
+            <tr>
+              <td><%= register.grade %></td>
+              <td><%= register.name %></td>
+              <td>新建立社員身份</td>
+              <td><a href="<%= user.url %>">facebook</a></td>
+              <td>
+                <a class="register_accept" href="/admin/accept_register?id=<%= register.id %>">承認</a>
+                <a class="register_reject" href="/admin/reject_register?id=<%= register.id %>">否定</a>
+              </td>
+            </tr>
+          <% end %>
+        <% } %>
+        <% if @member_registers.length == 0 %>
           <tr>
-            <td><%= member.grade %></td>
-            <td><%= member.name %></td>
-            <td>登記為既有社員</td>
-            <td><a href="<%= user.url %>">facebook</a></td>
-            <td>
-              <a class="register_accept" href="/admin/accept_register?id=<%= register.id %>">承認</a>
-              <a class="register_reject" href="/admin/reject_register?id=<%= register.id %>">否定</a>
-            </td>
-          </tr>
-        <% else %>
-          <tr>
-            <td><%= register.grade %></td>
-            <td><%= register.name %></td>
-            <td>新建立社員身份</td>
-            <td><a href="<%= user.url %>">facebook</a></td>
-            <td>
-              <a class="register_accept" href="/admin/accept_register?id=<%= register.id %>">承認</a>
-              <a class="register_reject" href="/admin/reject_register?id=<%= register.id %>">否定</a>
-            </td>
+            <td colspan="5">目前沒有待處理申請</td>
           </tr>
         <% end %>
-      <% } %>
-      <% if @member_registers.length == 0 %>
-        <tr>
-          <td colspan="5">目前沒有待處理申請</td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-<div id="create_member_field">
-  <h4>建立新社員：</h4>
-  <input type="text" name="grade" placeholder="級別" class="form-control"/>
-  <input type="text" name="name"  placeholder="姓名" class="form-control"/>
-  <button class="submit btn">上傳</button>
-</div>
-
-<div id="update_member_field">
-  <h4>修改社員基本資料：</h4>
-  <%= render "/members/filter_members" %>
-  <input type="text" name="grade" placeholder="級別" class="form-control"/>
-  <input type="text" name="name" placeholder="姓名" class="form-control"/>
-  <button class="submit btn">上傳</button>
-</div> 
-
-<div id="admin_update_relation_field">
-  <h4>修改社員關係：</h4>
-  師父<%= render "/members/filter_members" %>
-  徒弟<%= render "/members/filter_members" %>
-  <select class="relation_type_select">
-    <option value="0">無關係</option>
-    <option value="1">正師徒</option>
-    <option value="2">地師徒</option>
-  </select>
-  <button class="submit btn">上傳</button>
-</div>  
-
-<div id="destroy_member_field">
-  <h4>刪除社員：</h4>
-  <%= render "/members/filter_members" %>
-  <button class="submit btn">上傳</button>
+      </tbody>
+    </table>
+  </div>
+  
+  <div id="create_member_field">
+    <h4>建立新社員：</h4>
+    <input type="text" name="grade" placeholder="級別" class="form-control"/>
+    <input type="text" name="name"  placeholder="姓名" class="form-control"/>
+    <button class="submit btn">上傳</button>
+  </div>
+  
+  <div id="update_member_field">
+    <h4>修改社員基本資料：</h4>
+    <%= render "/members/filter_members" %>
+    <input type="text" name="grade" placeholder="級別" class="form-control"/>
+    <input type="text" name="name" placeholder="姓名" class="form-control"/>
+    <button class="submit btn">上傳</button>
+  </div> 
+  
+  <div id="admin_update_relation_field">
+    <h4>修改社員關係：</h4>
+    師父<%= render "/members/filter_members" %>
+    徒弟<%= render "/members/filter_members" %>
+    <select class="relation_type_select form-control">
+      <option value="0">無關係</option>
+      <option value="1">正師徒</option>
+      <option value="2">地師徒</option>
+    </select>
+    <button class="submit btn">上傳</button>
+  </div>  
+  
+  <div id="destroy_member_field">
+    <h4>刪除社員：</h4>
+    <%= render "/members/filter_members" %>
+    <button class="submit btn">上傳</button>
+  </div>
 </div>
