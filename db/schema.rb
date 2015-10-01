@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907153536) do
+ActiveRecord::Schema.define(version: 20150925092004) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "logs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "member_registers", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -40,7 +50,7 @@ ActiveRecord::Schema.define(version: 20150907153536) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "relations", ["master_id", "apprentice_id"], name: "index_relations_on_master_id_and_apprentice_id", unique: true
+  add_index "relations", ["master_id", "apprentice_id"], name: "index_relations_on_master_id_and_apprentice_id", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -64,9 +74,9 @@ ActiveRecord::Schema.define(version: 20150907153536) do
     t.string   "image"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["provider"], name: "index_users_on_provider"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["uid"], name: "index_users_on_uid"
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["provider"], name: "index_users_on_provider", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
 end
