@@ -6,6 +6,7 @@ class AdminController < ApplicationController
     @member_registers = MemberRegister.pending
   end
 
+
   def create_member
     return render_error_message("輸入級別有問題") if params["grade"].to_i < 50
     return render_error_message("輸入姓名有問題") if params["name"].nil? || params["name"].empty?
@@ -15,6 +16,8 @@ class AdminController < ApplicationController
     member.save
     return render_error_message("建立社員時發生錯誤，請洽詢管理員") if member.id.nil?
 
+    log_description = "admin create member " + member.id.to_s + " with name " + params["name"] + " and grade " + params["grade"]
+    Log.create({user_id: current_user.id, description: log_description})
     render_success
   end
 
@@ -26,6 +29,8 @@ class AdminController < ApplicationController
     member.attributes = { grade: params["grade"].to_i, name: params["name"] }
     member.save
 
+    log_description = "admin update member " + member.id.to_s + " with name " + params["name"] + " and grade " + params["grade"]
+    Log.create({user_id: current_user.id, description: log_description})
     render_success
   end
 
@@ -35,6 +40,8 @@ class AdminController < ApplicationController
     return render_error_message("無法找到您指定的社員") if member.nil?
     member.destroy
 
+    log_description = "admin destroy member " + member.id.to_s
+    Log.create({user_id: current_user.id, description: log_description})
     render_success
   end
 
@@ -58,6 +65,8 @@ class AdminController < ApplicationController
     member_register.admin_user_id = current_user.id
     member_register.save
 
+    log_description = "admin accept member register " + member_register.id.to_s
+    Log.create({user_id: current_user.id, description: log_description})
     render_success
   end
 
@@ -68,6 +77,8 @@ class AdminController < ApplicationController
     member_register.admin_user_id = current_user.id
     member_register.save
 
+    log_description = "admin reject member register " + member_register.id.to_s
+    Log.create({user_id: current_user.id, description: log_description})
     render_success
   end
 
@@ -94,6 +105,8 @@ class AdminController < ApplicationController
       relation.save
     end
 
+    log_description = "admin update member relation " + params[:master_id] + " - " + params["apprentice_id"] + " with type " + params[:type] 
+    Log.create({user_id: current_user.id, description: log_description})
     render_success
   end
 

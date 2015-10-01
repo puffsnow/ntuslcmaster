@@ -74,6 +74,8 @@ class MembersController < ApplicationController
       relation.save
     end
 
+    log_description = "member update relation with member " + member.id.to_s + " with type " + params[:type]
+    Log.create({user_id: current_user.id, description: log_description})
     render_success
   end
 
