@@ -1,4 +1,43 @@
 <div class="sub_container">
+
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#">編輯社員資料</a></li>
+    <li><a href="#">審核社員申請</a></li>
+    <li><a href="#">編輯社團活動</a></li>
+    <li><a href="#">編輯聯繫方式</a></li>
+  </ul>
+  
+  <div id="create_member_field">
+    <h4>建立新社員：</h4>
+    <%= render "/members/member_basic_form" %>
+    <button class="submit btn">上傳</button>
+  </div>
+  
+  <div id="update_member_field">
+    <h4>修改社員基本資料：</h4>
+    <%= render "/members/filter_members" %>
+    <%= render "/members/member_basic_form" %>
+    <button class="submit btn">上傳</button>
+  </div> 
+  
+  <div id="admin_update_relation_field">
+    <h4>修改社員關係：</h4>
+    師父<%= render "/members/filter_members" %>
+    徒弟<%= render "/members/filter_members" %>
+    <select class="relation_type_select form-control">
+      <option value="0">無關係</option>
+      <option value="1">正師徒</option>
+      <option value="2">地師徒</option>
+    </select>
+    <button class="submit btn">上傳</button>
+  </div>  
+  
+  <div id="destroy_member_field">
+    <h4>刪除社員：</h4>
+    <%= render "/members/filter_members" %>
+    <button class="submit btn">上傳</button>
+  </div>
+
   <div id="check_member_register_field">
     <h4>社員登記：</h4>
     <table class="table table-striped">
@@ -8,7 +47,7 @@
           <th>姓名</th>
           <th>建立新社員/登記為已存在社員</th>
           <th>FB連結</th>
-          <th>管理員操作</th>
+          <th>操作</th>
         </tr>
       </thead>
       <tbody>
@@ -47,37 +86,41 @@
       </tbody>
     </table>
   </div>
-  
-  <div id="create_member_field">
-    <h4>建立新社員：</h4>
-    <input type="text" name="grade" placeholder="級別" class="form-control"/>
-    <input type="text" name="name"  placeholder="姓名" class="form-control"/>
-    <button class="submit btn">上傳</button>
+
+  <div id="update_activity_option_field">
+    <h4>編輯社團活動：</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>名稱</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        </tr>
+      </tbody>
+    </table>
+    <input type="text" placeholder="新建立活動" class="form-control" />
+    <button class="submit btn">新增</button>
   </div>
-  
-  <div id="update_member_field">
-    <h4>修改社員基本資料：</h4>
-    <%= render "/members/filter_members" %>
-    <input type="text" name="grade" placeholder="級別" class="form-control"/>
-    <input type="text" name="name" placeholder="姓名" class="form-control"/>
-    <button class="submit btn">上傳</button>
-  </div> 
-  
-  <div id="admin_update_relation_field">
-    <h4>修改社員關係：</h4>
-    師父<%= render "/members/filter_members" %>
-    徒弟<%= render "/members/filter_members" %>
-    <select class="relation_type_select form-control">
-      <option value="0">無關係</option>
-      <option value="1">正師徒</option>
-      <option value="2">地師徒</option>
-    </select>
-    <button class="submit btn">上傳</button>
-  </div>  
-  
-  <div id="destroy_member_field">
-    <h4>刪除社員：</h4>
-    <%= render "/members/filter_members" %>
-    <button class="submit btn">上傳</button>
+
+  <div id="update_contact_option_field">
+    <h4>編輯聯繫方式：</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>名稱</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        </tr>
+      </tbody>
+    </table>
+    <input type="text" placeholder="新建立聯繫方式" class="form-control" />
+    <button class="submit btn">新增</button>
   </div>
+
 </div>
