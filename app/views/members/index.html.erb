@@ -1,12 +1,13 @@
 <div class="sub_container">
-  <div id="member_title_field">
-    <h4><%= @member.grade.to_s + ' ' + @member.name %></h4>
-  </div>
   
   <ul class="nav nav-tabs">
     <li class="active"><a href="#">編輯個人資料</a></li>
     <li><a href="#">我的老人聯絡網</a></li>
   </ul>
+
+  <div id="member_title_field">
+    <h4><%= @member.grade.to_s + ' ' + @member.name %></h4>
+  </div>
   
   <div id="member_update_relation_field">
     <h4>修改師徒關係：</h4>
@@ -16,6 +17,68 @@
       <option value="1"> 正師徒 </option>
       <option value="2"> 地師徒 </option>
     </select>
+    <button class="submit btn">上傳</button>
+  </div>
+
+  <div id="member_update_contact_field">
+    <h4>修改聯絡資料：</h4>
+    <h4>part1. 想被通知的活動</h4>
+    <div class="checkbox">
+      <label class="checkbox-inline">
+        <input type="checkbox">全部不要
+      </label>
+    </div>
+    <div class="checkbox">
+      <label class="checkbox-inline">
+        <input type="checkbox">幹部訓練
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox">手語之夜：驗戲
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox">手語之夜：表演
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox">期末公演：驗戲
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox">期末公演：表演
+      </label>
+    </div>
+    <div class="checkbox">
+      <label class="checkbox-inline">
+        <input type="checkbox">新生盃（上學期）
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox">新手觀（下學期）
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox">杜鵑花節
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox">社遊
+      </label>
+    </div>
+    <input type="text" placeholder="附註" class="form-control">
+    <h4>part2. 想被通知的方式</h4>
+    <div class="checkbox">
+      <label class="checkbox-inline">
+        <input type="checkbox">手機電話
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox">電子信箱
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox">ptt/ptt2站內信
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox">facebook
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox">line
+      </label>
+      <input type="text" placeholder="附註" class="form-control">
+    </div>
     <button class="submit btn">上傳</button>
   </div>
 </div>
