@@ -7,20 +7,20 @@
     <li><a href="#">編輯聯繫方式</a></li>
   </ul>
   
-  <div id="create_member_field">
+  <div id="create_member_field" class="field field-0">
     <h4>建立新社員：</h4>
     <%= render "/members/member_basic_form" %>
     <button class="submit btn">上傳</button>
   </div>
   
-  <div id="update_member_field">
+  <div id="update_member_field" class="field field-0">
     <h4>修改社員基本資料：</h4>
     <%= render "/members/filter_members" %>
     <%= render "/members/member_basic_form" %>
     <button class="submit btn">上傳</button>
   </div> 
   
-  <div id="admin_update_relation_field">
+  <div id="admin_update_relation_field" class="field field-0">
     <h4>修改社員關係：</h4>
     師父<%= render "/members/filter_members" %>
     徒弟<%= render "/members/filter_members" %>
@@ -32,13 +32,13 @@
     <button class="submit btn">上傳</button>
   </div>  
   
-  <div id="destroy_member_field">
+  <div id="destroy_member_field" class="field field-0">
     <h4>刪除社員：</h4>
     <%= render "/members/filter_members" %>
     <button class="submit btn">上傳</button>
   </div>
 
-  <div id="check_member_register_field">
+  <div id="check_member_register_field" class="field field-1">
     <h4>社員登記：</h4>
     <table class="table table-striped">
       <thead>
@@ -87,7 +87,7 @@
     </table>
   </div>
 
-  <div id="update_activity_option_field">
+  <div id="update_activity_option_field" class="field field-2">
     <h4>編輯社團活動：</h4>
     <table class="table table-striped">
       <thead>
@@ -105,7 +105,7 @@
     <button class="submit btn">新增</button>
   </div>
 
-  <div id="update_contact_option_field">
+  <div id="update_contact_option_field" class="field field-3">
     <h4>編輯聯繫方式：</h4>
     <table class="table table-striped">
       <thead>

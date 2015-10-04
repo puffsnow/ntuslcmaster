@@ -9,7 +9,7 @@
     <h4><%= @member.grade.to_s + ' ' + @member.name %></h4>
   </div>
   
-  <div id="member_update_relation_field">
+  <div id="member_update_relation_field" class="field field-0">
     <h4>修改師徒關係：</h4>
     <%= render "filter_members" %>
     <select class="relation_type_select form-control">
@@ -20,7 +20,7 @@
     <button class="submit btn">上傳</button>
   </div>
 
-  <div id="member_update_contact_field">
+  <div id="member_update_contact_field" class="field field-0">
     <h4>修改聯絡資料：</h4>
     <h4>part1. 想被通知的活動</h4>
     <div class="checkbox">
