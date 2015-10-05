@@ -5,6 +5,7 @@ class AdminController < ApplicationController
   def index
     @member_registers = MemberRegister.pending
     @activities = Activity.all
+    @contact_options = ContactOption.all
   end
 
 
@@ -117,6 +118,16 @@ class AdminController < ApplicationController
     Activity.create({name: name})
 
     log_description = "admin create activity " + name
+    Log.create({user_id: current_user.id, description: log_description})
+    render_success
+  end
+
+  def create_contact_option
+    name = params[:name]
+    return render_error_message("您未輸入聯繫方式名稱") if name.nil? || name == ""
+    ContactOption.create({name: name})
+
+    log_description = "admin create contact option " + name
     Log.create({user_id: current_user.id, description: log_description})
     render_success
   end

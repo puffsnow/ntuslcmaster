@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   post  'admin/accept_register' => 'admin#accept_register'
   post  'admin/reject_register' => 'admin#reject_register'
   post  'admin/create_activity' => 'admin#create_activity'
+  post  'admin/create_contact_option' => 'admin#create_contact_option'
 
   # Example resource route with options:
   #   resources :products do

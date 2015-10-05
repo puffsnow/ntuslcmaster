@@ -116,3 +116,22 @@ $(document).ready ->
           $("#update_activity_field .create_activity_text").val("")
           alertify.success("建立活動成功")
         alertify.alert(data.response.message) if data.response.success == false
+
+  $("#update_contact_option_field .submit").click ->
+    new_contact_option_name = $("#update_contact_option_field .create_contact_option_text").val()
+    if new_contact_option_name == ""
+      alert("請輸入聯繫方式名稱")
+      return
+    $.ajax
+      url: "/admin/create_contact_option"
+      dataType: "json"
+      method: "POST"
+      data: { name: new_contact_option_name }
+      error: (jqXHR, textStatus, errorThrown) ->
+      success: (data, textStatus, jqXHR) ->
+        if data.response.success == true
+          $("#update_contact_option_field table").append("<tr><td>" + new_contact_option_name + "</td><td></td></tr>")
+          $("#update_contact_option_field .create_row").appendTo("#update_contact_option_field table")
+          $("#update_contact_option_field .create_contact_option_text").val("")
+          alertify.success("建立聯繫方式成功")
+        alertify.alert(data.response.message) if data.response.success == false

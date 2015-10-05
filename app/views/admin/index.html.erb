@@ -121,6 +121,12 @@
         </tr>
       </thead>
       <tbody>
+        <% @contact_options.each do |contact_option| %>
+        <tr>
+          <td><%= contact_option.name %></td>
+          <td></td>
+        </tr>
+        <% end %>
         <tr class="create_row">
           <td><input type="text" placeholder="新建立聯繫方式" class="form-control create_contact_option_text" /></td>
           <td><button class="submit btn">新增</button></td>
