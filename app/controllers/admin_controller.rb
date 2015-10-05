@@ -4,6 +4,7 @@ class AdminController < ApplicationController
 
   def index
     @member_registers = MemberRegister.pending
+    @activities = Activity.all
   end
 
 
@@ -106,6 +107,16 @@ class AdminController < ApplicationController
     end
 
     log_description = "admin update member relation " + params[:master_id] + " - " + params["apprentice_id"] + " with type " + params[:type] 
+    Log.create({user_id: current_user.id, description: log_description})
+    render_success
+  end
+
+  def create_activity
+    name = params[:name]
+    return render_error_message("您未輸入活動名稱") if name.nil? || name == ""
+    Activity.create({name: name})
+
+    log_description = "admin create activity " + name
     Log.create({user_id: current_user.id, description: log_description})
     render_success
   end

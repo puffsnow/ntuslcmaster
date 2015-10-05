@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   post  'admin/update_relation' => 'admin#update_relation'
   post  'admin/accept_register' => 'admin#accept_register'
   post  'admin/reject_register' => 'admin#reject_register'
+  post  'admin/create_activity' => 'admin#create_activity'
 
   # Example resource route with options:
   #   resources :products do

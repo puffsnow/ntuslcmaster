@@ -97,3 +97,22 @@ $(document).ready ->
       success: (data, textStatus, jqXHR) ->
         alertify.success("刪除社員成功") if data.response.success == true
         alertify.alert(data.response.message) if data.response.success == false
+
+  $("#update_activity_field .submit").click ->
+    new_activity_name = $("#update_activity_field .create_activity_text").val()
+    if new_activity_name == ""
+      alert("請輸入活動名稱")
+      return
+    $.ajax
+      url: "/admin/create_activity"
+      dataType: "json"
+      method: "POST"
+      data: { name: new_activity_name }
+      error: (jqXHR, textStatus, errorThrown) ->
+      success: (data, textStatus, jqXHR) ->
+        if data.response.success == true
+          $("#update_activity_field table").append("<tr><td>" + new_activity_name + "</td><td></td></tr>")
+          $("#update_activity_field .create_row").appendTo("#update_activity_field table")
+          $("#update_activity_field .create_activity_text").val("")
+          alertify.success("建立活動成功")
+        alertify.alert(data.response.message) if data.response.success == false

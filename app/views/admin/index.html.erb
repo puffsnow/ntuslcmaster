@@ -87,7 +87,7 @@
     </table>
   </div>
 
-  <div id="update_activity_option_field" class="field field-2">
+  <div id="update_activity_field" class="field field-2">
     <h4>編輯社團活動：</h4>
     <table class="table table-striped">
       <thead>
@@ -97,12 +97,18 @@
         </tr>
       </thead>
       <tbody>
+        <% @activities.each do |activity| %>
         <tr>
+          <td><%= activity.name %></td>
+          <td></td>
+        </tr>
+        <% end %>
+        <tr class="create_row">
+          <td><input type="text" placeholder="新建立活動" class="form-control create_activity_text" /></td>
+          <td><button class="submit btn">新增</button></td>
         </tr>
       </tbody>
     </table>
-    <input type="text" placeholder="新建立活動" class="form-control" />
-    <button class="submit btn">新增</button>
   </div>
 
   <div id="update_contact_option_field" class="field field-3">
@@ -115,12 +121,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr class="create_row">
+          <td><input type="text" placeholder="新建立聯繫方式" class="form-control create_contact_option_text" /></td>
+          <td><button class="submit btn">新增</button></td>
         </tr>
       </tbody>
     </table>
-    <input type="text" placeholder="新建立聯繫方式" class="form-control" />
-    <button class="submit btn">新增</button>
   </div>
-
 </div>
