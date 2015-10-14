@@ -3,6 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
+  if $("#member_update_contact_field input.disable_all").is(':checked')
+    $("#member_update_contact_field .activity_option").prop("disabled", true)
+    $("#member_update_contact_field .activity_option.disable_all").prop("disabled", false)
+
   $(".grade_select").change ->
     grade = $(this).val()
     member_select_dom = $(this).next(".member_select")

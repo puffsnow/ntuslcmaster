@@ -5,6 +5,11 @@ class MembersController < ApplicationController
   def index
     @member = current_user.member
     redirect_to action: 'sign_up' if @member.nil?
+
+    ContactComment.create(user_id: current_user.id) if current_user.contact_comment.nil?
+    @contact_comment = current_user.contact_comment
+    @user_activities = current_user.activities
+    @user_contacts = current_user.contacts
     @all_activties = Activity.all
     @all_contacts = Contact.all
   end

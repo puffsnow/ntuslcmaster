@@ -14,10 +14,10 @@
     <h4>part1. 想被通知的活動</h4>
     <div class="checkbox">
       <label class="checkbox-inline">
-        <input type="checkbox" value="10000" class="activity_option checkbox disable_all">全部都要
+        <input type="checkbox" value="10000" class="activity_option checkbox disable_all"<%= " checked=\"checked\"" if @contact_comment.all_activities == true  %>>全部都要
       </label>
       <label class="checkbox-inline">
-        <input type="checkbox" value="0" class="activity_option checkbox disable_all">全部不要
+        <input type="checkbox" value="0" class="activity_option checkbox disable_all"<%= " checked=\"checked\"" if @contact_comment.none_activities == true  %>>全部不要
       </label>
     </div>
     <% i = 0 %>
@@ -30,14 +30,14 @@
         <% i == 0 %>
       <% end %>
       <label class="checkbox-inline">
-        <input type="checkbox" class="activity_option checkbox" value="<%= activity.id %>"><%= activity.name %>
+        <input type="checkbox" class="activity_option checkbox" value="<%= activity.id %>" <%= " checked=\"checked\"" if @user_activities.any? {|x| x.id == activity.id} %>><%= activity.name %>
       </label>
       <% i = i + 1 %>
     <% end %>
     <% if i > 0 %>
     </div>
     <% end %>
-    <input id="activity_comment" type="text" placeholder="附註" class="form-control">
+    <input id="activity_comment" type="text" placeholder="附註" class="form-control" value="<%= @contact_comment.activity_comment if @contact_comment.activity_comment != nil %>">
     <h4>part2. 想被通知的方式</h4>
     <% i = 0 %>
     <% @all_contacts.each do |contact| %>
@@ -49,14 +49,14 @@
         <% i == 0 %>
       <% end %>
       <label class="checkbox-inline">
-        <input type="checkbox" class="contact checkbox" value="<%= contact.id %>"><%= contact.name %>
+        <input type="checkbox" class="contact checkbox" value="<%= contact.id %>" <%= " checked=\"checked\"" if @user_contacts.any? {|x| x.id == contact.id} %>><%= contact.name %>
       </label>
       <% i = i + 1 %>
     <% end %>
     <% if i > 0 %>
     </div>
     <% end %>
-    <input id="contact_comment" type="text" placeholder="附註" class="form-control">
+    <input id="contact_comment" type="text" placeholder="附註" class="form-control" value="<%= @contact_comment.contact_comment if @contact_comment.contact_comment != nil %>">
     <button class="submit btn">上傳</button>
   </div>
 
