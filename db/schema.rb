@@ -74,19 +74,17 @@ ActiveRecord::Schema.define(version: 20151014082913) do
 
   add_index "relations", ["master_id", "apprentice_id"], name: "index_relations_on_master_id_and_apprentice_id", unique: true, using: :btree
 
-  create_table "user_activities", force: :cascade do |t|
-    t.integer  "user_id",      null: false
-    t.integer  "activity_id",  null: false
-    t.boolean  "is_contacted", null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table "user_activities", id: false, force: :cascade do |t|
+    t.integer  "user_id",     null: false
+    t.integer  "activity_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  create_table "user_contacts", force: :cascade do |t|
+  create_table "user_contacts", id: false, force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.integer  "contact_id", null: false
     t.string   "account"
-    t.boolean  "is_used",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

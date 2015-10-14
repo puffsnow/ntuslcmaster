@@ -6,10 +6,9 @@ class CreateActivitiesAndUserActivities < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :user_activities do |t|
+    create_table :user_activities, id: false do |t|
       t.integer  :user_id, null: false
       t.integer  :activity_id, null: false
-      t.boolean  :is_contacted, null: false
 
       t.timestamps null: false
     end
