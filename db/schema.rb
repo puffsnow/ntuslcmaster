@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20151014123602) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "follow_users", id: false, force: :cascade do |t|
+  create_table "follow_relations", id: false, force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.integer  "follow_id",  null: false
     t.datetime "created_at", null: false
