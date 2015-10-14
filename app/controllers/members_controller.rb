@@ -1,10 +1,12 @@
 class MembersController < ApplicationController
   before_action :authenticate_user!, except: :search
-  before_action :authenticate_member, only: :update_relation
+  before_action :authenticate_member, except: [:search, :index, :sign_up, :register]
 
   def index
     @member = current_user.member
     redirect_to action: 'sign_up' if @member.nil?
+    @all_activties = Activity.all
+    @all_contacts = Contact.all
   end
 
   def sign_up
@@ -77,6 +79,14 @@ class MembersController < ApplicationController
     log_description = "member update relation with member " + member.id.to_s + " with type " + params[:type]
     Log.create({user_id: current_user.id, description: log_description})
     render_success
+  end
+
+  def update_contact
+    activites = params[:activities]
+    contacts = params[:contacts]
+
+
+    
   end
 
   def search

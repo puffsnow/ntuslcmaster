@@ -111,7 +111,7 @@
     </table>
   </div>
 
-  <div id="update_contact_option_field" class="field field-3">
+  <div id="update_contact_field" class="field field-3">
     <h4>編輯聯繫方式：</h4>
     <table class="table table-striped">
       <thead>
@@ -121,14 +121,14 @@
         </tr>
       </thead>
       <tbody>
-        <% @contact_options.each do |contact_option| %>
+        <% @contacts.each do |contact| %>
         <tr>
-          <td><%= contact_option.name %></td>
+          <td><%= contact.name %></td>
           <td></td>
         </tr>
         <% end %>
         <tr class="create_row">
-          <td><input type="text" placeholder="新建立聯繫方式" class="form-control create_contact_option_text" /></td>
+          <td><input type="text" placeholder="新建立聯繫方式" class="form-control create_contact_text" /></td>
           <td><button class="submit btn">新增</button></td>
         </tr>
       </tbody>

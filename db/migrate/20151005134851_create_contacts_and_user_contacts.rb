@@ -1,14 +1,14 @@
-class CreateContactOptionsAndUserContactOptions < ActiveRecord::Migration
+class CreateContactsAndUserContacts < ActiveRecord::Migration
   def change
-    create_table :contact_options do |t|
+    create_table :contacts do |t|
       t.string  :name, null: false
 
       t.timestamps null: false
     end
 
-    create_table :user_contact_options do |t|
+    create_table :user_contacts do |t|
       t.integer  :user_id, null: false
-      t.integer  :contact_option_id, null: false
+      t.integer  :contact_id, null: false
       t.string   :account
       t.boolean  :is_used, null: false
 

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_one :member, :class_name => 'Member', :foreign_key => 'user_id'
   has_many :member_registers, :class_name => 'MemberRegister', :foreign_key => 'user_id'
   has_many :user_activities, :class_name => 'UserActivity', :foreign_key => 'user_id'
-  has_many :user_contact_options, :class_name => 'UserContactOption', :foreign_key => 'user_id'
+  has_many :user_contacts, :class_name => 'UserContact', :foreign_key => 'user_id'
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
