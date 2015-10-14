@@ -85,7 +85,7 @@ class MembersController < ApplicationController
     activites = params[:activities]
     contacts = params[:contacts]
 
-
+    
     
   end
 
