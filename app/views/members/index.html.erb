@@ -37,7 +37,7 @@
     <% if i > 0 %>
     </div>
     <% end %>
-    <input type="text" placeholder="附註" class="form-control">
+    <input id="activity_comment" type="text" placeholder="附註" class="form-control">
     <h4>part2. 想被通知的方式</h4>
     <% i = 0 %>
     <% @all_contacts.each do |contact| %>
@@ -56,7 +56,7 @@
     <% if i > 0 %>
     </div>
     <% end %>
-    <input type="text" placeholder="附註" class="form-control">
+    <input id="contact_comment" type="text" placeholder="附註" class="form-control">
     <button class="submit btn">上傳</button>
   </div>
 

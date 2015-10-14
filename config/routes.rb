@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get   'members/sign_up'=> 'members#sign_up'
   post  'members/register'   => 'members#register'
   post  'members/update_relation' => 'members#update_relation'
+  post  'members/update_contact'  => 'members#update_contact'
 
   get   'admin/index'           => 'admin#index'
   post  'admin/create_member'   => 'admin#create_member'

@@ -94,15 +94,18 @@ $(document).ready ->
     contact_array = $("#member_update_contact_field .contact:checked").map ->
       return this.value;
     .get()
+
+    activity_comment = $("#member_update_contact_field #activity_comment").val()
+    contact_comment = $("#member_update_contact_field #contact_comment").val()
     
     $.ajax
       url: "/members/update_contact"
       dataType: "json"
       method: "POST"
-      data: { activities: activity_array, contacts: contact_array}
+      data: { activities: activity_array, contacts: contact_array, activity_comment: activity_comment, contact_comment: contact_comment}
       error: (jqXHR, textStatus, errorThrown) ->
       success: (data, textStatus, jqXHR) ->
-        alertify.success("修改連繫方式成功") if data.response.success == true
+        alertify.success("修改聯絡資料成功") if data.response.success == true
         alertify.alert(data.response.message) if data.response.success == false
 
   return

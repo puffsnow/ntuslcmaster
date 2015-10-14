@@ -82,11 +82,32 @@ class MembersController < ApplicationController
   end
 
   def update_contact
-    activites = params[:activities]
-    contacts = params[:contacts]
+    activities = params[:activities].nil? ? [] : params[:activities].map{|x| x.to_i}
+    contacts = params[:contacts].nil? ? [] : params[:contacts].map{|x| x.to_i} 
 
-    
-    
+    contact_comment = current_user.contact_comment
+    contact_comment = ContactComment.new and contact_comment.user_id = current_user.id if contact_comment.nil?
+    contact_comment.activity_comment = params[:activity_comment]
+    contact_comment.contact_comment = params[:contact_comment]
+    contact_comment.all_activities = activities.index(10000).nil? ? false : true
+    contact_comment.none_activities = activities.index(0).nil? ? false : true
+    contact_comment.save
+
+    UserActivity.where(user_id: current_user.id).delete_all
+    UserContact.where(user_id:current_user).delete_all
+
+    activities.each do |activity_id|
+      next if activity_id == 10000 || activity_id == 0
+      UserActivity.create(user_id: current_user.id, activity_id: activity_id)
+    end
+
+    contacts.each do |contact_id|
+      UserContact.create(user_id: current_user.id, contact_id: contact_id)
+    end
+
+    log_description = "user update contact data"
+    Log.create({user_id: current_user.id, description: log_description})
+    render_success
   end
 
   def search
