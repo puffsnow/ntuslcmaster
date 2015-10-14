@@ -16,6 +16,11 @@ class User < ActiveRecord::Base
   has_many :contacts, :through => :user_contacts
   has_one :contact_comment, :class_name => 'ContactComment', :foreign_key => 'user_id'
 
+  has_many :follow_relations, :foreign_key => "user_id", :class_name => "FollowRelation", dependent: :destroy
+  has_many :follows, :through => :follow_relations
+  has_many :follower_relations, :foreign_key => "follow_id", :class_name => "FollowRelation", dependent: :destroy
+  has_many :followers, :through => :follower_relations
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
