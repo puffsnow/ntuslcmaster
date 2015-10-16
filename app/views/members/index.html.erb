@@ -78,19 +78,19 @@
     <% @follows.each do |follow| %>
       <% if follow.user.nil? %>
         <div class="panel panel-default">
-          <div class="panel-heading"><%= follow.grade + " " + follow.name + ":" %> 此社員未註冊</div>
+          <div class="panel-heading"><%= follow.grade.to_s + " " + follow.name + ":" %> 此社員未註冊</div>
         </div>
       <% elsif follow.contact_comment.all_activities %>
         <div class="panel panel-success">
-          <div class="panel-heading"><%= follow.grade + " " + follow.name + ":" %> 希望得到所有活動資訊</div>
+          <div class="panel-heading"><%= follow.grade.to_s + " " + follow.name + ":" %> 希望得到所有活動資訊</div>
         </div>
       <% elsif follow.contact_comment.none_activities %>
         <div class="panel panel-danger">
-          <div class="panel-heading"><%= follow.grade + " " + follow.name + ":" %> 希望不要聯繫</div>
+          <div class="panel-heading"><%= follow.grade.to_s + " " + follow.name + ":" %> 希望不要聯繫</div>
         </div>
       <% else %>
         <div class="panel panel-primary">
-          <div class="panel-heading"><%= follow.grade + " " + follow.name + ":" %> 希望得到特定活動資訊</div>
+          <div class="panel-heading"><%= follow.grade.to_s + " " + follow.name + ":" %> 希望得到特定活動資訊</div>
         </div>
       <% end %>
     <% end %>
