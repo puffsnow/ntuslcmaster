@@ -17,6 +17,8 @@ class Member < ActiveRecord::Base
   has_many :follower_relations, :foreign_key => "follow_id", :class_name => "FollowRelation", dependent: :destroy
   has_many :followers, :through => :follower_relations
 
+  after_create :create_contact_comment
+
   def self.search str
     grade = str.to_i
     if grade > 0
@@ -25,6 +27,16 @@ class Member < ActiveRecord::Base
       members = Member.select(:id, :name, :grade).where("name like ?", "%" + str + "%")
     end
     return members
+  end
+
+  private
+
+  def create_contact_comment
+    contact_comment = ContactComment.new
+    contact_comment.member_id = self.id
+    contact_comment.all_activities = true
+    contact_comment.none_activities = false
+    contact_comment.save
   end
 
 end
