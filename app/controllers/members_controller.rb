@@ -19,6 +19,7 @@ class MembersController < ApplicationController
     @user_contacts = @member.contacts
     @all_activities = Activity.all
     @all_contacts = Contact.all
+    @follows = @member.follows
   end
 
   def sign_up
