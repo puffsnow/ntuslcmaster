@@ -21,7 +21,7 @@
       </label>
     </div>
     <% i = 0 %>
-    <% @all_activties.each do |activity| %>
+    <% @all_activities.each do |activity| %>
       <% if i == 0 %>
         <div class="checkbox">
       <% elsif i % 5 == 0 %>
@@ -69,6 +69,12 @@
       <option value="2"> 地師徒 </option>
     </select>
     <button class="submit btn">上傳</button>
+  </div>
+
+  <div id="member_follow_field" class="field field-2">
+    <h4>我追蹤的社員：</h4>
+    <%= render "filter_members" %>
+
   </div>
 
 </div>

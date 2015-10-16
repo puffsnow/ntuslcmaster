@@ -1,4 +1,4 @@
-class CreateContactsAndUserContacts < ActiveRecord::Migration
+class CreateContactsAndMemberContacts < ActiveRecord::Migration
   def change
     create_table :contacts do |t|
       t.string  :name, null: false
@@ -6,8 +6,8 @@ class CreateContactsAndUserContacts < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :user_contacts, id: false do |t|
-      t.integer  :user_id, null: false
+    create_table :member_contacts, id: false do |t|
+      t.integer  :member_id, null: false
       t.integer  :contact_id, null: false
       t.string   :account
 

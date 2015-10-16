@@ -6,11 +6,18 @@ class MembersController < ApplicationController
     @member = current_user.member
     redirect_to action: 'sign_up' if @member.nil?
 
-    ContactComment.create(user_id: current_user.id) if current_user.contact_comment.nil?
-    @contact_comment = current_user.contact_comment
-    @user_activities = current_user.activities
-    @user_contacts = current_user.contacts
-    @all_activties = Activity.all
+    if @member.contact_comment.nil?
+      @contact_comment = ContactComment.new
+      @contact_comment.member_id = @member.id
+      @contact_comment.all_activities = true
+      @contact_comment.none_activities = false
+      @contact_comment.save
+    end
+
+    @contact_comment = @member.contact_comment
+    @user_activities = @member.activities
+    @user_contacts = @member.contacts
+    @all_activities = Activity.all
     @all_contacts = Contact.all
   end
 
@@ -90,24 +97,25 @@ class MembersController < ApplicationController
     activities = params[:activities].nil? ? [] : params[:activities].map{|x| x.to_i}
     contacts = params[:contacts].nil? ? [] : params[:contacts].map{|x| x.to_i} 
 
-    contact_comment = current_user.contact_comment
-    contact_comment = ContactComment.new and contact_comment.user_id = current_user.id if contact_comment.nil?
+    member = current_user.member
+    contact_comment = member.contact_comment
+    contact_comment = ContactComment.new and contact_comment.member_id = member.id if contact_comment.nil?
     contact_comment.activity_comment = params[:activity_comment]
     contact_comment.contact_comment = params[:contact_comment]
     contact_comment.all_activities = activities.index(10000).nil? ? false : true
     contact_comment.none_activities = activities.index(0).nil? ? false : true
     contact_comment.save
 
-    UserActivity.where(user_id: current_user.id).delete_all
-    UserContact.where(user_id:current_user).delete_all
+    MemberActivity.where(member_id: member.id).delete_all
+    MemberContact.where(member_id: member.id).delete_all
 
     activities.each do |activity_id|
       next if activity_id == 10000 || activity_id == 0
-      UserActivity.create(user_id: current_user.id, activity_id: activity_id)
+      MemberActivity.create(member_id: member.id, activity_id: activity_id)
     end
 
     contacts.each do |contact_id|
-      UserContact.create(user_id: current_user.id, contact_id: contact_id)
+      MemberContact.create(member_id: member.id, contact_id: contact_id)
     end
 
     log_description = "user update contact data"

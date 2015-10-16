@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20151014123602) do
   end
 
   create_table "contact_comments", force: :cascade do |t|
-    t.integer  "user_id",          null: false
+    t.integer  "member_id",        null: false
     t.boolean  "all_activities",   null: false
     t.boolean  "none_activities",  null: false
     t.text     "activity_comment"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20151014123602) do
   end
 
   create_table "follow_relations", id: false, force: :cascade do |t|
-    t.integer  "user_id",    null: false
+    t.integer  "member_id",  null: false
     t.integer  "follow_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,6 +50,21 @@ ActiveRecord::Schema.define(version: 20151014123602) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "member_activities", id: false, force: :cascade do |t|
+    t.integer  "member_id",   null: false
+    t.integer  "activity_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "member_contacts", id: false, force: :cascade do |t|
+    t.integer  "member_id",  null: false
+    t.integer  "contact_id", null: false
+    t.string   "account"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "member_registers", force: :cascade do |t|
@@ -80,21 +95,6 @@ ActiveRecord::Schema.define(version: 20151014123602) do
   end
 
   add_index "relations", ["master_id", "apprentice_id"], name: "index_relations_on_master_id_and_apprentice_id", unique: true, using: :btree
-
-  create_table "user_activities", id: false, force: :cascade do |t|
-    t.integer  "user_id",     null: false
-    t.integer  "activity_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "user_contacts", id: false, force: :cascade do |t|
-    t.integer  "user_id",    null: false
-    t.integer  "contact_id", null: false
-    t.string   "account"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

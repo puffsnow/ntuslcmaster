@@ -1,7 +1,7 @@
 class CreateContactComments < ActiveRecord::Migration
   def change
     create_table :contact_comments do |t|
-      t.integer :user_id, null: false
+      t.integer :member_id, null: false
       t.boolean :all_activities, null: false
       t.boolean :none_activities, null: false
       t.text  :activity_comment
