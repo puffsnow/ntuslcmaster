@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+
+  resources :follow_relations
+
   get   'family_tree/get_relations' => 'family_tree/get_relations'
 
   get   'members/index'  => 'members#index'

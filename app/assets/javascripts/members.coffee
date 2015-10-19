@@ -112,6 +112,42 @@ $(document).ready ->
         alertify.success("修改聯絡資料成功") if data.response.success == true
         alertify.alert(data.response.message) if data.response.success == false
 
-  return
+  $("#member_follow_field > .submit").click ->
+    follow_id = $("#member_follow_field .member_select").val()
+    if follow_id == "0"
+      alert("請選擇一個成員") 
+      return
+    $.ajax
+      url: "/follow_relations"
+      dataType: "json"
+      method: "POST"
+      data: { follow_id: follow_id }
+      error: (jqXHR, textStatus, errorThrown) ->
+      success: (data, textStatus, jqXHR) ->
+        if data.response.success == true
+          alertify.success("已加入追蹤名單")
+          contact_comment = data.response.contact_comment
+          if contact_comment == undefined
+            class_name = "active"
+            description = "此社員未註冊"
+          else if contact_comment.all_activities == true
+            class_name = "success"
+            description = "希望得到所有活動資訊"
+          else if contact_comment.none_activities == true
+            class_name = "danger"
+            description = "希望不要聯繫"
+          else
+            class_name = "primary"
+            description = "希望得到特定活動資訊"
+          new_row = $("<tr class=\"" + class_name + "\"></tr>")
+          new_row.append("<td>" + $("#member_follow_field .grade_select option:selected").text() + "</td>")
+          new_row.append("<td>" + $("#member_follow_field .member_select option:selected").text() + "</td>")
+          new_row.append("<td>" + description + "</td>")
+          new_row.append("<td><i class=\"fa fa-minus-square-o fa-lg\"></i></td>")
+          new_row.append("<td></td>") if class_name == "active"
+          new_row.append("<td><i class=\"fa fa-angle-double-down fa-lg\"></i></td>") if class_name != "active"  
+          new_row.appendTo("#member_follow_field table")
+        else
+          alertify.alert(data.response.message) 
 
 

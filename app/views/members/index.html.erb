@@ -81,6 +81,7 @@
           <th>級別</th>
           <th>姓名</th>
           <th>被通知意願內容</th>
+          <th>移除</th>
           <th>展開</th>
         </tr>
       </thead>
@@ -91,6 +92,7 @@
               <td><%= follow.grade.to_s %></td>
               <td><%= follow.name %></td>
               <td>此社員未註冊</td>
+              <td><i class="fa fa-minus-square-o fa-lg"></i></td>
               <td></td>
             </tr>
           <% elsif follow.contact_comment.all_activities %>
@@ -98,21 +100,24 @@
               <td><%= follow.grade.to_s %></td>
               <td><%= follow.name %></td>
               <td>希望得到所有活動資訊</td>
-              <td><i class="fa fa-angle-down fa-lg"></i></td>
+              <td><i class="fa fa-minus-square-o fa-lg"></i></td>
+              <td><i class="fa fa-angle-double-down fa-lg"></i></td>
             </tr>
           <% elsif follow.contact_comment.none_activities %>
             <tr class="danger">
               <td><%= follow.grade.to_s %></td>
               <td><%= follow.name %></td>
               <td>希望不要聯繫</td>
-              <td><i class="fa fa-angle-down fa-lg"></i></td>
+              <td><i class="fa fa-minus-square-o fa-lg"></i></td>
+              <td><i class="fa fa-angle-double-down fa-lg"></i></td>
             </tr>
           <% else %>
             <tr class="primary">
               <td><%= follow.grade.to_s %></td>
               <td><%= follow.name %></td>
               <td>希望得到特定活動資訊</td>
-              <td><i class="fa fa-angle-down fa-lg"></i></td>
+              <td><i class="fa fa-minus-square-o fa-lg"></i></td>
+              <td><i class="fa fa-angle-double-down fa-lg"></i></td>
             </tr>
           <% end %>
         <% end %>

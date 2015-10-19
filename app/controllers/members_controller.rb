@@ -19,7 +19,7 @@ class MembersController < ApplicationController
     @user_contacts = @member.contacts
     @all_activities = Activity.all
     @all_contacts = Contact.all
-    @follows = @member.follows
+    @follows = @member.follows.order(:grade)
   end
 
   def sign_up
