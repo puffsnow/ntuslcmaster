@@ -75,7 +75,7 @@
     <h4>我追蹤的社員：</h4>
     <%= render "filter_members" %>
     <button class="submit btn">上傳</button>
-    <table class="table table-striped">
+    <table class="table">
       <thead>
         <tr>
           <th>級別</th>
@@ -84,6 +84,7 @@
           <th>展開</th>
         </tr>
       </thead>
+      <tbody>
         <% @follows.each do |follow| %>
           <% if follow.user.nil? %>
             <tr class="active">
@@ -104,7 +105,7 @@
               <td><%= follow.grade.to_s %></td>
               <td><%= follow.name %></td>
               <td>希望不要聯繫</td>
-              <td></td>
+              <td><i class="fa fa-angle-down fa-lg"></i></td>
             </tr>
           <% else %>
             <tr class="primary">
@@ -115,6 +116,7 @@
             </tr>
           <% end %>
         <% end %>
+      </tbody>
+    </table>
   </div>
-
 </div>
