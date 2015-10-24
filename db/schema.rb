@@ -38,12 +38,14 @@ ActiveRecord::Schema.define(version: 20151014123602) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "follow_relations", id: false, force: :cascade do |t|
+  create_table "follow_relations", force: :cascade do |t|
     t.integer  "member_id",  null: false
     t.integer  "follow_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "follow_relations", ["member_id", "follow_id"], name: "index_follow_relations_on_member_id_and_follow_id", unique: true, using: :btree
 
   create_table "logs", force: :cascade do |t|
     t.integer  "user_id"
@@ -52,20 +54,24 @@ ActiveRecord::Schema.define(version: 20151014123602) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "member_activities", id: false, force: :cascade do |t|
+  create_table "member_activities", force: :cascade do |t|
     t.integer  "member_id",   null: false
     t.integer  "activity_id", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "member_contacts", id: false, force: :cascade do |t|
+  add_index "member_activities", ["member_id", "activity_id"], name: "index_member_activities_on_member_id_and_activity_id", unique: true, using: :btree
+
+  create_table "member_contacts", force: :cascade do |t|
     t.integer  "member_id",  null: false
     t.integer  "contact_id", null: false
     t.string   "account"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "member_contacts", ["member_id", "contact_id"], name: "index_member_contacts_on_member_id_and_contact_id", unique: true, using: :btree
 
   create_table "member_registers", force: :cascade do |t|
     t.integer  "user_id",       null: false
