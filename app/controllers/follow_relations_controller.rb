@@ -21,5 +21,15 @@ class FollowRelationsController < ApplicationController
     response["contact_comment"] = follow_member.contact_comment if follow_member.user != nil
     render :json => { response: response }
   end
+
+  def destroy
+    member = current_user.member
+    FollowRelation.delete_all(["member_id = ? and follow_id = ?", member.id, params[:id].to_i])
+
+    log_description = "member destroy follow relation with " + params[:id]
+    Log.create({user_id: current_user.id, description: log_description})
+
+    render_success
+  end
   
 end

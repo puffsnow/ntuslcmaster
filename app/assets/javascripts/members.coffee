@@ -143,11 +143,20 @@ $(document).ready ->
           new_row.append("<td>" + $("#member_follow_field .grade_select option:selected").text() + "</td>")
           new_row.append("<td>" + $("#member_follow_field .member_select option:selected").text() + "</td>")
           new_row.append("<td>" + description + "</td>")
-          new_row.append("<td><i class=\"fa fa-minus-square-o fa-lg\"></i></td>")
+          new_row.append("<td><a href=\"/follow_relations/" + follow_id + "\" class=\"a-remove-follow-relation\"><i class=\"fa fa-minus-square-o fa-lg\"></i></a></td>")
           new_row.append("<td></td>") if class_name == "active"
           new_row.append("<td><i class=\"fa fa-angle-double-down fa-lg\"></i></td>") if class_name != "active"  
           new_row.appendTo("#member_follow_field table")
         else
           alertify.alert(data.response.message) 
+
+  $('#member_follow_field .a-remove-follow-relation').click (event)->
+    event.preventDefault()
+    $.ajax
+      url: $(this).attr("href")
+      dataType: "json"
+      method: "DELETE"
+      error: (jqXHR, textStatus, errorThrown) ->
+      success: (data, textStatus, jqXHR) ->
 
 
