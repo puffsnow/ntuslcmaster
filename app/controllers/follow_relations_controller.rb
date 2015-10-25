@@ -24,7 +24,7 @@ class FollowRelationsController < ApplicationController
 
   def destroy
     member = current_user.member
-    FollowRelation.delete_all(["member_id = ? and follow_id = ?", member.id, params[:id].to_i])
+    FollowRelation.where({member_id: member.id, follow_id: params[:id].to_i}).first.destroy
 
     log_description = "member destroy follow relation with " + params[:id]
     Log.create({user_id: current_user.id, description: log_description})
