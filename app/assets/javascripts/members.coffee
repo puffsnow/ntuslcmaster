@@ -150,13 +150,19 @@ $(document).ready ->
         else
           alertify.alert(data.response.message) 
 
-  $('#member_follow_field .a-remove-follow-relation').click (event)->
+  $('#member_follow_field').on 'click', '.a-remove-follow-relation', (event) ->
     event.preventDefault()
+    dom_button = $(this)
     $.ajax
       url: $(this).attr("href")
       dataType: "json"
       method: "DELETE"
       error: (jqXHR, textStatus, errorThrown) ->
       success: (data, textStatus, jqXHR) ->
+        dom_button.closest("tr").remove()
+        alertify.success("已從追蹤名單移除")
+
+
+  return
 
 
