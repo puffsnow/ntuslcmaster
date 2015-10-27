@@ -2,6 +2,20 @@ class FollowRelationsController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_member
 
+  def show
+    member = Member.find(params[:id])
+    contact_comment = ContactComment.select(:all_activities, :none_activities, :activity_comment, :contact_comment).where({member_id: member.id})
+    activities = member.activities.select(:name)
+    contacts = member.contacts.select(:name)
+
+    response = Hash.new
+    response["contact_comment"] = contact_comment
+    response["activities"] = activities
+    response["contacts"] = contacts
+    response["success"] = true
+    render :json => { response: response }
+  end
+
   def create
     member = current_user.member
     follow_id = params[:follow_id].to_i

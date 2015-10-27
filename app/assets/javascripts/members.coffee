@@ -162,6 +162,15 @@ $(document).ready ->
         dom_button.closest("tr").remove()
         alertify.success("已從追蹤名單移除")
 
+  $('#member_follow_field').on 'click', '.a-detail-follow-relation', (event) ->
+    event.preventDefault()
+    dom_button = $(this)
+    $.ajax
+      url: $(this).attr("href")
+      dataType: "json"
+      method: "GET"
+      error: (jqXHR, textStatus, errorThrown) ->
+      success: (data, textStatus, jqXHR) ->
 
   return
 

@@ -101,7 +101,7 @@
               <td><%= follow.name %></td>
               <td>希望得到所有活動資訊</td>
               <td><a href="/follow_relations/<%= follow.id %>" class="a-remove-follow-relation"><i class="fa fa-minus-square-o fa-lg"></i></a></td>
-              <td><i class="fa fa-angle-double-down fa-lg"></i></td>
+              <td><a href="/follow_relations/<%= follow.id %>" class="a-detail-follow-relation"><i class="fa fa-angle-double-down fa-lg"></i></a></td>
             </tr>
           <% elsif follow.contact_comment.none_activities %>
             <tr class="danger">
@@ -109,7 +109,7 @@
               <td><%= follow.name %></td>
               <td>希望不要聯繫</td>
               <td><a href="/follow_relations/<%= follow.id %>" class="a-remove-follow-relation"><i class="fa fa-minus-square-o fa-lg"></i></a></td>
-              <td><i class="fa fa-angle-double-down fa-lg"></i></td>
+              <td><a href="/follow_relations/<%= follow.id %>" class="a-detail-follow-relation"><i class="fa fa-angle-double-down fa-lg"></i></a></td>
             </tr>
           <% else %>
             <tr class="primary">
@@ -117,7 +117,7 @@
               <td><%= follow.name %></td>
               <td>希望得到特定活動資訊</td>
               <td><a href="/follow_relations/<%= follow.id %>" class="a-remove-follow-relation"><i class="fa fa-minus-square-o fa-lg"></i></a></td>
-              <td><i class="fa fa-angle-double-down fa-lg"></i></td>
+              <td><a href="/follow_relations/<%= follow.id %>" class="a-detail-follow-relation"><i class="fa fa-angle-double-down fa-lg"></i></a></td>
             </tr>
           <% end %>
         <% end %>
