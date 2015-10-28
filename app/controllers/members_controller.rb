@@ -4,7 +4,7 @@ class MembersController < ApplicationController
 
   def index
     @member = current_user.member
-    redirect_to action: 'sign_up' if @member.nil?
+    redirect_to action: 'sign_up' and return if @member.nil?
 
     if @member.contact_comment.nil?
       @contact_comment = ContactComment.new
