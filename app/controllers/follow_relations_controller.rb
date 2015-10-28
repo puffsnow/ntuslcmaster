@@ -4,7 +4,7 @@ class FollowRelationsController < ApplicationController
 
   def show
     member = Member.find(params[:id])
-    contact_comment = ContactComment.select(:all_activities, :none_activities, :activity_comment, :contact_comment).where({member_id: member.id})
+    contact_comment = ContactComment.select(:all_activities, :none_activities, :activity_comment, :contact_comment).where({member_id: member.id}).first
     activities = member.activities.select(:name)
     contacts = member.contacts.select(:name)
 

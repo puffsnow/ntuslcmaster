@@ -171,6 +171,44 @@ $(document).ready ->
       method: "GET"
       error: (jqXHR, textStatus, errorThrown) ->
       success: (data, textStatus, jqXHR) ->
+        response = data.response
+        contact_comment = response.contact_comment
+        activities = response.activities
+        contacts = response.contacts
+        contact_detail_text = "聯絡活動："
+        if contact_comment.all_activities == true
+          contact_detail_text += "全部"
+        else if contact_comment.none_activities == true
+          contact_detail_text += "無"
+        else
+          if activities.length == 0
+            contact_detail_text += "無"
+          for activity in activities
+            do ->
+              contact_detail_text += activity.name + "、"
+        contact_detail_text += "<br />"
+        if contact_comment.activity_comment != null
+          contact_detail_text += "備註：" + contact_comment.activity_comment + "<br />"
+        contact_detail_text += "聯絡方式："
+        if contacts.length == 0
+          contact_detail_text += "無"
+        for contact in contacts
+          do ->
+            contact_detail_text += contact.name + "、"
+        contact_detail_text += "<br />"
+        if contact_comment.contact_comment != null
+          contact_detail_text += "備註：" + contact_comment.contact_comment + "<br />"
+        contact_detail_row = $("<tr><td colspan='5'>" + contact_detail_text + "</td></tr>")
+        dom_button.closest("tr").after(contact_detail_row)
+        dom_button.after('<a href="' + dom_button.attr("href") + '" class="a-detail-follow-relation-off"><i class="fa fa-angle-double-up fa-lg"></i></a>')
+        dom_button.remove()  
+
+  $('#member_follow_field').on 'click', '.a-detail-follow-relation-off', (event) ->
+    event.preventDefault()
+    $(this).after('<a href="' + $(this).attr("href") + '" class="a-detail-follow-relation"><i class="fa fa-angle-double-down fa-lg"></i></a>')
+    $(this).closest("tr").next("tr").remove()
+    $(this).remove()
+
 
   return
 
