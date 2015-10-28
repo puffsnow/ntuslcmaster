@@ -145,7 +145,7 @@ $(document).ready ->
           new_row.append("<td>" + description + "</td>")
           new_row.append("<td><a href=\"/follow_relations/" + follow_id + "\" class=\"a-remove-follow-relation\"><i class=\"fa fa-minus-square-o fa-lg\"></i></a></td>")
           new_row.append("<td></td>") if class_name == "active"
-          new_row.append("<td><i class=\"fa fa-angle-double-down fa-lg\"></i></td>") if class_name != "active"  
+          new_row.append('<td><a href="/follow_relations/' + follow_id + '" class="a-detail-follow-relation"><i class="fa fa-angle-double-down fa-lg"></i></a></td>') if class_name != "active"  
           new_row.appendTo("#member_follow_field table")
         else
           alertify.alert(data.response.message) 
@@ -153,13 +153,17 @@ $(document).ready ->
   $('#member_follow_field').on 'click', '.a-remove-follow-relation', (event) ->
     event.preventDefault()
     dom_button = $(this)
+    dom_relation_row = $(this).closest("tr")
+
     $.ajax
       url: $(this).attr("href")
       dataType: "json"
       method: "DELETE"
       error: (jqXHR, textStatus, errorThrown) ->
       success: (data, textStatus, jqXHR) ->
-        dom_button.closest("tr").remove()
+        if dom_relation_row.find(".a-detail-follow-relation-off").length > 0
+          dom_relation_row.next("tr").remove()
+        dom_relation_row.remove()
         alertify.success("已從追蹤名單移除")
 
   $('#member_follow_field').on 'click', '.a-detail-follow-relation', (event) ->
