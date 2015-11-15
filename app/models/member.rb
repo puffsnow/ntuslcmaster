@@ -29,6 +29,13 @@ class Member < ActiveRecord::Base
     return members
   end
 
+  def is_main_grade?
+    time = Time.new
+    main_grade = time.month >= 8 ? time.year - 1912 : time.year - 1913
+    return true if self.grade == main_grade
+    return false
+  end
+
   private
 
   def create_contact_comment
