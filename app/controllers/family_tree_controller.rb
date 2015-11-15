@@ -1,6 +1,6 @@
 class FamilyTreeController < ApplicationController
   def index
-    @all_members = Member.all
+    @all_members = Member.all.order(:id)
     @maximum_grade = Member.maximum('grade')
     @minimum_grade = Member.minimum('grade')
   end
