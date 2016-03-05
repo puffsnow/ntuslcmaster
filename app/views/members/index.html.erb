@@ -71,9 +71,8 @@
     <button class="submit btn">上傳</button>
   </div>
 
-  <% if @member.is_main_grade? %>
-
   <div id="member_follow_field" class="field field-2">
+  <% if @member.is_main_grade? %>
     <h4>我追蹤的社員：</h4>
     <%= render "filter_members" %>
     <button class="submit btn">上傳</button>
@@ -125,10 +124,10 @@
         <% end %>
       </tbody>
     </table>
-  </div>
 
   <% else %>
   <h4>只有幹部可以查詢老人的意向喔！</h4>
   <% end %>
+  </div>
 
 </div>
