@@ -58,7 +58,7 @@ gem "omniauth", '~> 1.3.2'
 gem "omniauth-facebook" 
 gem "auto-facebook", "0.42"
 
-gem "pg"
+gem "pg", '~> 0.18'
 gem 'rails_12factor'
 gem 'jquery-turbolinks'
 gem "figaro"
