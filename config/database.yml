@@ -27,6 +27,6 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV['ntuslcladder_database_name'] %>
-  username: <%= ENV['ntuslcladder_database_username'] %>
-  password: <%= ENV['ntuslcladder_database_password'] %>
+  database: <%= ENV['ntuslcmaster_database_name'] %>
+  username: <%= ENV['ntuslcmaster_database_username'] %>
+  password: <%= ENV['ntuslcmaster_database_password'] %>
