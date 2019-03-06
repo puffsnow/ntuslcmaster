@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   post  'admin/create_activity' => 'admin#create_activity'
   post  'admin/create_contact' => 'admin#create_contact'
 
+  match ':controller(/:action(/:id(.:format)))', :via => :all
+
   # Example resource route with options:
   #   resources :products do
   #     member do
