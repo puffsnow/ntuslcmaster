@@ -9,7 +9,7 @@
       <td class="member_column">
         <% @all_members.each do |member| %>
           <% if member.grade == i %>
-            <button class="btn btn-member" id="m<%= member.id %>"><%= member.name %></button><br />
+            <button class="btn btn-default btn-member" id="m<%= member.id %>"><%= member.name %></button><br />
           <% end %>
         <% end %>
       </td>
