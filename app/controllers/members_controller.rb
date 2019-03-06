@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
-  #before_action :authenticate_user!, except: :search
-  #before_action :authenticate_member, except: [:search, :index, :sign_up, :register]
+  before_action :authenticate_user!, except: :search
+  before_action :authenticate_member, except: [:search, :index, :sign_up, :register]
 
   def index
     @member = current_user.member
