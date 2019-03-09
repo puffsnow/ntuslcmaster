@@ -6,6 +6,14 @@
   th{
     min-width: 120px;
   }
+
+  .grade_row th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 60px;
+    background: rgba(255, 255, 255, 0.5);
+  }
+
   .btn-grade{
     min-width: 100px;
     margin: 5px 10px;
@@ -15,6 +23,7 @@
     margin: 5px 20px;   
   }
 }
+
 
 .primary_relation {
     position: absolute; /* allows to position it anywhere */
