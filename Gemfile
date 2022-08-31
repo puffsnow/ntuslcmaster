@@ -54,7 +54,7 @@ gem 'auto_html'
 gem 'settingslogic'
 
 # gem for login using facebook function
-gem "omniauth", '~> 1.3.2'
+gem "omniauth", '~> 1.9.2'
 gem "omniauth-facebook" 
 gem "auto-facebook", "0.42"
 
