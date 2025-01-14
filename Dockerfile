@@ -20,7 +20,9 @@ RUN bundle install
 COPY . .
 
 # 設定環境變數
-ENV RAILS_ENV=production \
+ENV LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    RAILS_ENV=production \
     RAILS_SERVE_STATIC_FILES=true
 
 # 編譯 assets
