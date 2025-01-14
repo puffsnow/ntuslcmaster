@@ -27,6 +27,8 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV['ntuslcmaster_database_name'] %>
-  username: <%= ENV['ntuslcmaster_database_username'] %>
-  password: <%= ENV['ntuslcmaster_database_password'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  port: <%= ENV['DATABASE_PORT'] || 5432 %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
